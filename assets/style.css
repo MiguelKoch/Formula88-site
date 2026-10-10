@@ -251,3 +251,67 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 
 .site-foot { padding-top: 24px; padding-bottom: 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 .site-foot p { margin: 0 0 6px; }
+
+/* ---------- traços próprios de cada pintura ---------- */
+/* Posições todas na cor de destaque */
+[data-livery="retro"] .grid td.c-pos,
+[data-livery="riscas"] .grid td.c-pos,
+[data-livery="vermelho-branco"] .grid td.c-pos,
+[data-livery="preto-dourado"] .grid td.c-pos { color: var(--accent); }
+
+/* Martini Racing: faixa larga, pontos em azul-marinho */
+[data-livery="riscas"] { --stripes-h: 46px; }
+[data-livery="riscas"] .grid td.c-geral, [data-livery="riscas"] .big span { color: var(--text); }
+
+/* Lotus 72D: moldura dupla dourada à volta da página */
+[data-livery="preto-dourado"] body::before, [data-livery="preto-dourado"] body::after { content: ''; position: fixed; pointer-events: none; z-index: 30; }
+[data-livery="preto-dourado"] body::before { inset: 5px; border: 2px solid var(--accent); }
+[data-livery="preto-dourado"] body::after { inset: 10px; border: 1px solid var(--accent); }
+[data-livery="preto-dourado"] .wrap { padding-left: 24px; padding-right: 24px; }
+[data-livery="preto-dourado"] .site-head { padding-top: 12px; }
+[data-livery="preto-dourado"] .site-foot { padding-bottom: 48px; }
+[data-livery="preto-dourado"] .grid thead th { color: var(--accent); letter-spacing: 0.14em; }
+
+/* Lotus 49: a faixa amarela desce pela página e as posições assentam nela */
+[data-livery="verde-amarelo"] .grid .c-pos { background: var(--fill); color: var(--on-fill); text-align: center; border-bottom-color: var(--fill); }
+[data-livery="verde-amarelo"] .grid thead .c-pos { color: var(--on-fill); }
+[data-livery="verde-amarelo"] .card .num { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: var(--fill); color: var(--on-fill); }
+
+/* McLaren Senna: bloco vermelho com corte diagonal */
+[data-livery="vermelho-branco"] .stripes { height: 46px; background: var(--bg); clip-path: polygon(72% 0, 100% 0, 100% 100%, 56% 100%); }
+[data-livery="vermelho-branco"] .grid thead th { color: var(--text); border-bottom: 3px solid var(--text); }
+[data-livery="vermelho-branco"] .grid td.c-geral, [data-livery="vermelho-branco"] .big span { color: var(--text); }
+
+/* Gulf e McLaren Hamilton: cada linha é um cartão com uma barra à esquerda */
+[data-livery="azul-laranja"] .table-wrap, [data-livery="prata"] .table-wrap { background: transparent; border: 0; border-radius: 0; }
+[data-livery="azul-laranja"] .grid, [data-livery="prata"] .grid { border-spacing: 0 6px; }
+[data-livery="azul-laranja"] .grid thead th, [data-livery="prata"] .grid thead th { background: var(--bg); border-bottom: 0; color: var(--text); }
+[data-livery="azul-laranja"] .grid tbody th, [data-livery="azul-laranja"] .grid tbody td,
+[data-livery="prata"] .grid tbody th, [data-livery="prata"] .grid tbody td { background: var(--panel); border-bottom: 0; }
+[data-livery="azul-laranja"] .grid tbody tr > :first-child { border-left: 10px solid var(--text); }
+[data-livery="azul-laranja"] .grid tbody tr > .c-pos.top { border-left-color: var(--fill); }
+[data-livery="prata"] .grid tbody tr > :first-child { border-left: 10px solid #8E969D; }
+[data-livery="prata"] .grid tbody tr > .c-pos.top { border-left-color: #E2231A; }
+[data-livery="azul-laranja"] .grid .c-pos, [data-livery="prata"] .grid .c-pos { width: 58px; }
+[data-livery="azul-laranja"] .standings .c-name, [data-livery="prata"] .standings .c-name { left: 58px; }
+[data-livery="azul-laranja"] .grid td.c-pos, [data-livery="prata"] .grid td.c-pos { color: var(--text); }
+
+/* McLaren Hamilton: rasgo vermelho inclinado no canto, títulos em itálico, pontos em bloco escuro */
+[data-livery="prata"] h1, [data-livery="prata"] h2, [data-livery="prata"] .logo, [data-livery="prata"] .card-t, [data-livery="prata"] .c-pos, [data-livery="prata"] .stat-v, [data-livery="prata"] .num, [data-livery="prata"] .chip-n { font-style: italic; }
+[data-livery="prata"] .site-head { position: relative; overflow: hidden; }
+[data-livery="prata"] .site-head::before { content: ''; position: absolute; top: 0; bottom: 0; right: -60px; width: 300px; background: #E2231A; transform: skewX(-24deg); }
+[data-livery="prata"] .site-head::after { content: ''; position: absolute; top: 0; bottom: 0; right: 262px; width: 14px; background: #16181A; transform: skewX(-24deg); }
+[data-livery="prata"] .head-row { position: relative; z-index: 1; }
+[data-livery="prata"] .menu-btn { background: var(--head-bg); }
+[data-livery="prata"] .stripes { display: none; }
+[data-livery="prata"] .grid td.c-geral { background: var(--fill); color: var(--on-fill); }
+[data-livery="prata"] .grid thead .c-geral { color: var(--text); }
+@media (max-width: 899px) { [data-livery="prata"] .site-head::before { width: 190px; } [data-livery="prata"] .site-head::after { right: 152px; } }
+
+/* Brawn GP: posições em blocos pretos, pontos em blocos fluorescentes */
+[data-livery="fluo"] .grid .c-pos { text-align: center; }
+[data-livery="fluo"] .grid td.c-pos.top { background: #111111; color: #D2F000; }
+[data-livery="fluo"] .grid td.c-geral { background: var(--fill); color: var(--on-fill); }
+
+/* Arcade: pontos a amarelo */
+[data-livery="arcade"] .grid td.c-geral, [data-livery="arcade"] .big span { color: #FFE14D; }
