@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt" data-livery="retro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fórmula 88</title>
+<meta name="description" content="Fórmula 88: a melhor liga de karts acima do Mondego. Classificações, provas, pilotos e regulamento.">
+<script>
+/* Aplica a pintura guardada antes de a página aparecer. Fica só neste browser. */
+(function () {
+  try {
+    var l = localStorage.getItem('f88-pintura');
+    if (l) document.documentElement.setAttribute('data-livery', l);
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#app">Saltar para o conteúdo</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="logo" href="#/">FÓRMULA <span>88</span></a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <div class="menu" id="menu">
+      <nav id="nav" class="nav" aria-label="Principal"></nav>
+      <div class="tools">
+        <select id="season-select" aria-label="Temporada"></select>
+        <details class="livery-pop" id="livery-pop">
+          <summary>Pintura</summary>
+          <div class="liveries" id="liveries" role="group" aria-label="Escolher pintura"></div>
+        </details>
+      </div>
+    </div>
+  </div>
+  <div class="stripes" aria-hidden="true"></div>
+</header>
+
+<main id="app" class="wrap" tabindex="-1">
+  <p class="loading">A carregar…</p>
+</main>
+
+<footer class="wrap site-foot">
+  <p>Fórmula 88 · A melhor liga de karts acima do Mondego</p>
+  <p class="fine">A pintura escolhida fica guardada só neste browser. O site não usa cookies nem recolhe dados.</p>
+</footer>
+
+<script src="assets/scoring.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

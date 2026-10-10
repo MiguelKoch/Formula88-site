@@ -1,0 +1,28 @@
+{
+  "id": "2027",
+  "name": "Temporada 2027",
+  "points": {
+    "positions": [
+      18,
+      15,
+      13,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1
+    ],
+    "presence": 3,
+    "fastestLap": 1
+  },
+  "dropWorstFromRace": 3,
+  "drivers": [],
+  "teams": [],
+  "races": []
+}

@@ -1,0 +1,103 @@
+{
+  "race": "viana",
+  "fastestLap": "bruno-silva",
+  "note": "Grelha definida pelos tempos de treino.",
+  "results": [
+    {
+      "driver": "david-santos",
+      "pos": 1,
+      "grid": 3,
+      "bestLap": "1:00.007"
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 2,
+      "grid": 4,
+      "bestLap": "0:59.806"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 3,
+      "grid": 2,
+      "bestLap": "0:59.543"
+    },
+    {
+      "driver": "pedro-gomes",
+      "pos": 4,
+      "grid": 5,
+      "bestLap": "1:00.679"
+    },
+    {
+      "driver": "filipe-costa",
+      "pos": 5,
+      "grid": 1,
+      "bestLap": "1:00.287"
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 6,
+      "grid": 7,
+      "bestLap": "1:00.369"
+    },
+    {
+      "driver": "alan-lundgren",
+      "pos": 7,
+      "grid": 6,
+      "bestLap": "1:00.749"
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 8,
+      "grid": 13,
+      "bestLap": "1:00.892"
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 9,
+      "grid": 12,
+      "bestLap": "1:01.339"
+    },
+    {
+      "driver": "sergio-machado",
+      "pos": 10,
+      "grid": 10,
+      "bestLap": "1:00.506"
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 11,
+      "grid": 14,
+      "bestLap": "1:01.522"
+    },
+    {
+      "driver": "victor-osorio",
+      "pos": 12,
+      "grid": 15,
+      "bestLap": "1:01.564"
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 13,
+      "grid": 11,
+      "bestLap": "1:02.189"
+    },
+    {
+      "driver": "luis-silva",
+      "pos": 14,
+      "grid": 9,
+      "bestLap": "1:01.075"
+    },
+    {
+      "driver": "duarte-costa",
+      "pos": 15,
+      "grid": 8,
+      "bestLap": "1:01.801"
+    },
+    {
+      "driver": "joao-costa",
+      "pos": 16,
+      "grid": 16,
+      "bestLap": "1:02.469"
+    }
+  ]
+}

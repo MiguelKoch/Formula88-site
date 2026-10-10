@@ -1,0 +1,89 @@
+{
+  "race": "kivi",
+  "fastestLap": "fabio-oliveira",
+  "results": [
+    {
+      "driver": "jennifer",
+      "pos": 1,
+      "bestLap": "1:10.104"
+    },
+    {
+      "driver": "pedro-gomes",
+      "pos": 2,
+      "bestLap": "1:10.188"
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 3,
+      "bestLap": "1:10.305"
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 4,
+      "bestLap": "1:10.595"
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 5,
+      "bestLap": "1:09.432",
+      "penalty": 5
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 6,
+      "bestLap": "1:11.493"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 7,
+      "bestLap": "1:11.324"
+    },
+    {
+      "driver": "filipe-costa",
+      "pos": 8,
+      "bestLap": "1:11.291",
+      "penalty": 20
+    },
+    {
+      "driver": "duarte-frazao",
+      "pos": 9,
+      "bestLap": "1:11.883"
+    },
+    {
+      "driver": "sergio-machado",
+      "pos": 10,
+      "bestLap": "1:11.528"
+    },
+    {
+      "driver": "carlos-campos",
+      "pos": 11,
+      "bestLap": "1:14.235"
+    },
+    {
+      "driver": "alan-lundgren",
+      "pos": 12,
+      "bestLap": "1:14.931"
+    },
+    {
+      "driver": "joao-costa",
+      "pos": 13,
+      "bestLap": "1:15.969"
+    },
+    {
+      "driver": "david-santos",
+      "pos": 14,
+      "bestLap": "1:17.376"
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 15,
+      "bestLap": "1:14.756"
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 16,
+      "bestLap": "1:09.648",
+      "status": "DNF"
+    }
+  ]
+}

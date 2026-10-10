@@ -1,0 +1,56 @@
+{
+  "race": "vila-real",
+  "fastestLap": "hugo-oliveira",
+  "results": [
+    {
+      "driver": "hugo-oliveira",
+      "pos": 1,
+      "bestLap": "1:01.547"
+    },
+    {
+      "driver": "pedro-gomes",
+      "pos": 2,
+      "bestLap": "1:02.283"
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 3,
+      "bestLap": "1:02.156"
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 4,
+      "bestLap": "1:02.656"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 5,
+      "bestLap": "1:02.456"
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 6,
+      "bestLap": "1:02.505"
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 7,
+      "bestLap": "1:02.926"
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 8,
+      "bestLap": "1:03.007"
+    },
+    {
+      "driver": "sergio-machado",
+      "pos": 9,
+      "bestLap": "1:03.737"
+    },
+    {
+      "driver": "joao-costa",
+      "pos": 10,
+      "bestLap": "1:03.552"
+    }
+  ]
+}

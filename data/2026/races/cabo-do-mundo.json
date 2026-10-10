@@ -1,0 +1,47 @@
+{
+  "race": "cabo-do-mundo",
+  "fastestLap": "goncalo-portugal",
+  "results": [
+    {
+      "driver": "david-santos",
+      "pos": 1
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 2,
+      "bestLap": "0:57.051"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 3
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 4
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 5
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 6
+    },
+    {
+      "driver": "victor-osorio",
+      "pos": 7
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 8
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 9
+    },
+    {
+      "driver": "joao-costa",
+      "pos": 10
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "race": "fafe",
+  "fastestLap": "goncalo-portugal",
+  "results": [
+    {
+      "driver": "pedro-gomes",
+      "pos": 1,
+      "grid": 12,
+      "bestLap": "0:57.128"
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 2,
+      "grid": 11,
+      "bestLap": "0:56.809"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 3,
+      "grid": 9,
+      "bestLap": "0:57.858"
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 4,
+      "grid": 6,
+      "bestLap": "0:58.004"
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 5,
+      "grid": 7,
+      "bestLap": "0:58.165"
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 6,
+      "grid": 5,
+      "bestLap": "0:58.416"
+    },
+    {
+      "driver": "david-santos",
+      "pos": 7,
+      "grid": 8,
+      "bestLap": "0:58.341"
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 8,
+      "grid": 4,
+      "bestLap": "0:58.788"
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 9,
+      "grid": 10,
+      "bestLap": "0:59.040"
+    },
+    {
+      "driver": "luis-silva",
+      "pos": 10,
+      "grid": 1,
+      "bestLap": "0:59.017"
+    },
+    {
+      "driver": "joao-costa",
+      "pos": 11,
+      "grid": 3,
+      "bestLap": "0:59.376"
+    },
+    {
+      "driver": "carlos-campos",
+      "pos": 12,
+      "grid": 2,
+      "bestLap": "1:01.991",
+      "status": "DNF"
+    }
+  ]
+}

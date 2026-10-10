@@ -1,0 +1,292 @@
+{
+  "id": "2026",
+  "name": "Temporada 2026",
+  "points": {
+    "positions": [
+      18,
+      15,
+      13,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1
+    ],
+    "presence": 3,
+    "fastestLap": 1
+  },
+  "dropWorstFromRace": 3,
+  "drivers": [
+    {
+      "id": "pedro-gomes",
+      "name": "Pedro Gomes"
+    },
+    {
+      "id": "goncalo-portugal",
+      "name": "Gonçalo Portugal"
+    },
+    {
+      "id": "bruno-silva",
+      "name": "Bruno Silva"
+    },
+    {
+      "id": "hugo-oliveira",
+      "name": "Hugo Oliveira"
+    },
+    {
+      "id": "fabio-oliveira",
+      "name": "Fábio Oliveira"
+    },
+    {
+      "id": "sergio-costa",
+      "name": "Sérgio Costa"
+    },
+    {
+      "id": "david-santos",
+      "name": "David Santos"
+    },
+    {
+      "id": "miguel-carmo",
+      "name": "Miguel Carmo"
+    },
+    {
+      "id": "daniel-marques",
+      "name": "Daniel Marques"
+    },
+    {
+      "id": "filipe-costa",
+      "name": "Filipe Costa"
+    },
+    {
+      "id": "sergio-machado",
+      "name": "Sérgio Machado"
+    },
+    {
+      "id": "joao-costa",
+      "name": "João Costa"
+    },
+    {
+      "id": "carlos-campos",
+      "name": "Carlos Campos"
+    },
+    {
+      "id": "jennifer",
+      "name": "Jennifer"
+    },
+    {
+      "id": "alan-lundgren",
+      "name": "Alan Lundgren"
+    },
+    {
+      "id": "victor-osorio",
+      "name": "Victor Osório"
+    },
+    {
+      "id": "luis-silva",
+      "name": "Luis Silva"
+    },
+    {
+      "id": "goncalo-torres",
+      "name": "Gonçalo Torres"
+    },
+    {
+      "id": "duarte-frazao",
+      "name": "Duarte Frazão"
+    },
+    {
+      "id": "diogo-correia",
+      "name": "Diogo Correia"
+    },
+    {
+      "id": "duarte-costa",
+      "name": "Duarte Costa"
+    },
+    {
+      "id": "diogo-oliveira",
+      "name": "Diogo Oliveira"
+    },
+    {
+      "id": "bernardo-barbosa",
+      "name": "Bernardo Barbosa"
+    },
+    {
+      "id": "ruben-santos",
+      "name": "Ruben Santos"
+    }
+  ],
+  "teams": [
+    {
+      "id": "moto-estrondo",
+      "name": "Moto Estrondo",
+      "drivers": [
+        "goncalo-torres",
+        "diogo-oliveira"
+      ]
+    },
+    {
+      "id": "vai-a-fundo-e-reza",
+      "name": "Vai a fundo e reza",
+      "drivers": [
+        "hugo-oliveira",
+        "sergio-machado"
+      ]
+    },
+    {
+      "id": "lentos-e-furiosos",
+      "name": "Lentos e Furiosos",
+      "drivers": [
+        "fabio-oliveira",
+        "duarte-costa"
+      ]
+    },
+    {
+      "id": "tracao-a-costa",
+      "name": "Traçao à Costa",
+      "drivers": [
+        "sergio-costa",
+        "filipe-costa"
+      ]
+    },
+    {
+      "id": "dalu-100-medo",
+      "name": "DaLu 100 medo",
+      "drivers": [
+        "luis-silva",
+        "david-santos"
+      ]
+    },
+    {
+      "id": "alan-pedro",
+      "name": "Alan + Pedro",
+      "drivers": [
+        "pedro-gomes",
+        "alan-lundgren"
+      ]
+    },
+    {
+      "id": "campos-portugueses-perdidos",
+      "name": "Campos Portugueses Perdidos",
+      "drivers": [
+        "goncalo-portugal",
+        "carlos-campos"
+      ]
+    },
+    {
+      "id": "mano-que-senna",
+      "name": "Mano, que Senna!",
+      "drivers": [
+        "duarte-frazao",
+        "miguel-carmo"
+      ]
+    },
+    {
+      "id": "vitor-bruno",
+      "name": "Vitor+Bruno",
+      "drivers": [
+        "victor-osorio",
+        "bruno-silva"
+      ]
+    },
+    {
+      "id": "joao-daniel",
+      "name": "Joao+Daniel",
+      "drivers": [
+        "joao-costa",
+        "daniel-marques"
+      ]
+    },
+    {
+      "id": "diogo-jennifer",
+      "name": "Diogo+Jennifer",
+      "drivers": [
+        "diogo-correia",
+        "jennifer"
+      ]
+    }
+  ],
+  "races": [
+    {
+      "id": "viana",
+      "name": "Viana",
+      "track": "Kartódromo de Viana",
+      "date": "2025-11-30",
+      "karts": "390cc",
+      "duration": "15 min",
+      "surface": "Seco",
+      "ballast": false,
+      "hasResults": true
+    },
+    {
+      "id": "baltar",
+      "name": "Baltar",
+      "track": "Kartódromo de Baltar",
+      "date": "2026-01-11",
+      "karts": "390cc",
+      "duration": "15 min",
+      "surface": "Molhado",
+      "ballast": true,
+      "hasResults": true
+    },
+    {
+      "id": "kivi",
+      "name": "Kivi",
+      "track": "Kartódromo Kivi (Viana)",
+      "date": "2026-02-08",
+      "karts": "270cc",
+      "duration": "15 min",
+      "surface": "Molhado",
+      "ballast": true,
+      "hasResults": true
+    },
+    {
+      "id": "cabo-do-mundo",
+      "name": "Cabo do Mundo",
+      "track": "Kartódromo Cabo do Mundo",
+      "date": "2026-03-22",
+      "karts": "270cc",
+      "duration": "15 min",
+      "surface": "Seco",
+      "ballast": true,
+      "hasResults": true
+    },
+    {
+      "id": "vila-real",
+      "name": "Vila Real",
+      "track": "Kartódromo de Vila Real",
+      "date": "2026-04-19",
+      "karts": "390cc",
+      "duration": null,
+      "surface": "Seco",
+      "ballast": null,
+      "hasResults": true
+    },
+    {
+      "id": "fafe",
+      "name": "Fafe",
+      "track": "Kartódromo de Fafe",
+      "date": "2026-05-31",
+      "karts": "390cc",
+      "duration": "15 min",
+      "surface": "Seco",
+      "ballast": true,
+      "hasResults": true
+    },
+    {
+      "id": "braga",
+      "name": "Braga",
+      "track": "Kartódromo de Braga",
+      "date": "2026-07-05",
+      "karts": "390cc",
+      "duration": "15 min",
+      "surface": "Seco",
+      "ballast": null,
+      "hasResults": true
+    }
+  ]
+}

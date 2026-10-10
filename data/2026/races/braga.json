@@ -1,0 +1,50 @@
+{
+  "race": "braga",
+  "fastestLap": "pedro-gomes",
+  "results": [
+    {
+      "driver": "pedro-gomes",
+      "pos": 1
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 2
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 3
+    },
+    {
+      "driver": "goncalo-torres",
+      "pos": 4
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 5
+    },
+    {
+      "driver": "luis-silva",
+      "pos": 6
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 7
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 8
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 9
+    },
+    {
+      "driver": "sergio-machado",
+      "pos": 10
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 11
+    }
+  ]
+}
