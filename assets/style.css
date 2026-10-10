@@ -315,3 +315,26 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 
 /* Arcade: pontos a amarelo */
 [data-livery="arcade"] .grid td.c-geral, [data-livery="arcade"] .big span { color: #FFE14D; }
+
+/* Retro 88 "no máximo": riscas pela lateral da página, linhas em cartão e pódio a cheio */
+[data-livery="retro"] body::before { content: ''; position: fixed; top: 0; bottom: 0; left: 0; width: 30px; z-index: 30; background: linear-gradient(90deg, #FF7A66 0 33.3%, #F4A261 33.3% 66.6%, #FFC43D 66.6%); }
+[data-livery="retro"] .wrap { padding-left: 46px; }
+[data-livery="retro"] .stripes { display: none; }
+[data-livery="retro"] .logo { font-size: 52px; }
+@media (min-width: 900px) {
+  [data-livery="retro"] body::before { width: 42px; }
+  [data-livery="retro"] .wrap { padding-left: 66px; }
+}
+[data-livery="retro"] .table-wrap { background: transparent; border: 0; border-radius: 0; }
+[data-livery="retro"] .grid { border-spacing: 0 6px; }
+[data-livery="retro"] .grid thead th { background: var(--bg); border-bottom: 0; color: #F4A261; }
+[data-livery="retro"] .grid tbody th, [data-livery="retro"] .grid tbody td { background: #22325A; border-bottom: 0; }
+[data-livery="retro"] .grid td.c-pos { font-size: 38px; }
+[data-livery="retro"] .grid td.c-geral { font-size: 36px; color: var(--text); }
+[data-livery="retro"] .grid tbody tr:nth-child(1):has(> .c-pos.top) > * { background: #FFC43D; }
+[data-livery="retro"] .grid tbody tr:nth-child(2):has(> .c-pos.top) > * { background: #F4A261; }
+[data-livery="retro"] .grid tbody tr:nth-child(3):has(> .c-pos.top) > * { background: #FF7A66; }
+[data-livery="retro"] .grid tbody tr:has(> .c-pos.top) :is(th, td, a, span, small),
+[data-livery="retro"] .grid tbody tr:has(> .c-pos.top) > * { color: #14213D; }
+[data-livery="retro"] .grid tbody tr:has(> .c-pos.top) .fl { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+[data-livery="retro"] .standings .c-name { box-shadow: none; }
