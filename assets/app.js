@@ -3,19 +3,18 @@
   'use strict';
 
   var LIVERIES = [
+    { id: 'escuro', name: 'Default', sw: ['#0F1214', '#F2C230', '#0F1214'] },
     { id: 'retro', name: 'Retro 88', sw: ['#14213D', '#FFC43D', '#FF7A66'] },
-    { id: 'riscas', name: 'Riscas azul e vermelho', sw: ['#FFFFFF', '#0B1F4B', '#D8232A'] },
-    { id: 'preto-dourado', name: 'Preto e dourado', sw: ['#0A0A0A', '#C9A227', '#0A0A0A'] },
-    { id: 'verde-amarelo', name: 'Verde e amarelo', sw: ['#0B3D2A', '#F7D417', '#0B3D2A'] },
-    { id: 'prata', name: 'Prata e vermelho', sw: ['#D5D9DD', '#E2231A', '#16181A'] },
-    { id: 'vermelho-branco', name: 'Vermelho e branco', sw: ['#D01F15', '#FFFFFF', '#D01F15'] },
-    { id: 'fluo', name: 'Branco e amarelo fluo', sw: ['#FFFFFF', '#D2F000', '#111111'] },
-    { id: 'azul-laranja', name: 'Azul e laranja', sw: ['#9AD4EA', '#F26A1B', '#10244A'] },
-    { id: 'amarelo', name: 'Amarelo pista', sw: ['#FFC43D', '#14213D', '#D62828'] },
-    { id: 'arcade', name: 'Arcade', sw: ['#0B0B14', '#FF4FA0', '#3CE6E6'] },
-    { id: 'escuro', name: 'Escuro', sw: ['#0F1214', '#F2C230', '#0F1214'] }
+    { id: 'riscas', name: 'Martini Racing', sw: ['#FFFFFF', '#0B1F4B', '#D8232A'] },
+    { id: 'azul-laranja', name: 'Gulf', sw: ['#9AD4EA', '#F26A1B', '#10244A'] },
+    { id: 'preto-dourado', name: 'Lotus 72D', sw: ['#0A0A0A', '#C9A227', '#0A0A0A'] },
+    { id: 'verde-amarelo', name: 'Lotus 49', sw: ['#0B3D2A', '#F7D417', '#0B3D2A'] },
+    { id: 'vermelho-branco', name: 'McLaren Senna', sw: ['#D01F15', '#FFFFFF', '#D01F15'] },
+    { id: 'prata', name: 'McLaren Hamilton', sw: ['#D5D9DD', '#E2231A', '#16181A'] },
+    { id: 'fluo', name: 'Brawn GP', sw: ['#FFFFFF', '#D2F000', '#111111'] },
+    { id: 'arcade', name: 'Arcade', sw: ['#0B0B14', '#FF4FA0', '#3CE6E6'] }
   ];
-  var DEFAULT_LIVERY = 'retro';
+  var DEFAULT_LIVERY = 'escuro';
 
   var S = window.F88Scoring;
   var app = document.getElementById('app');

@@ -69,12 +69,6 @@
   --stripes: linear-gradient(#F26A1B 0 80%, #10244A 80%); --stripes-h: 26px;
   --display: 'Anton', 'Arial Narrow', sans-serif; --display-w: 400; --display-ls: 0.01em; --display-scale: 0.78;
 }
-[data-livery="amarelo"] {
-  --bg: #FFC43D; --panel: #FFD875; --line: #14213D; --text: #14213D; --muted: #36415E;
-  --accent: #14213D; --fill: #14213D; --on-fill: #FFC43D; --fl: #5B2A9E; --up: #0A5C39; --down: #A12A0A;
-  --head-bg: #14213D; --head-text: #F7F3E8; --head-accent: #FFC43D;
-  --stripes: linear-gradient(#D62828, #D62828); --stripes-h: 8px;
-}
 [data-livery="arcade"] {
   --bg: #0B0B14; --panel: #14142A; --line: #2C2C48; --text: #F4F4FA; --muted: #A3A3C2;
   --accent: #FF4FA0; --fill: #FFE14D; --on-fill: #0B0B14; --fl: #3CE6E6; --up: #7FE8A8; --down: #FF9B6B;
