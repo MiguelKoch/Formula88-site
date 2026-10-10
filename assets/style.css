@@ -278,7 +278,7 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 [data-livery="verde-amarelo"] .card .num { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: var(--fill); color: var(--on-fill); }
 
 /* McLaren Senna: bloco vermelho com corte diagonal */
-[data-livery="vermelho-branco"] .stripes { height: 46px; background: var(--bg); clip-path: polygon(72% 0, 100% 0, 100% 100%, 56% 100%); }
+[data-livery="vermelho-branco"] .stripes { height: 64px; background: var(--bg); clip-path: polygon(100% 0, 100% 100%, 45% 100%); }
 [data-livery="vermelho-branco"] .grid thead th { color: var(--text); border-bottom: 3px solid var(--text); }
 [data-livery="vermelho-branco"] .grid td.c-geral, [data-livery="vermelho-branco"] .big span { color: var(--text); }
 
@@ -298,15 +298,13 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 
 /* McLaren Hamilton: rasgo vermelho inclinado no canto, títulos em itálico, pontos em bloco escuro */
 [data-livery="prata"] h1, [data-livery="prata"] h2, [data-livery="prata"] .logo, [data-livery="prata"] .card-t, [data-livery="prata"] .c-pos, [data-livery="prata"] .stat-v, [data-livery="prata"] .num, [data-livery="prata"] .chip-n { font-style: italic; }
-[data-livery="prata"] .site-head { position: relative; overflow: hidden; }
-[data-livery="prata"] .site-head::before { content: ''; position: absolute; top: 0; bottom: 0; right: -60px; width: 300px; background: #E2231A; transform: skewX(-24deg); }
-[data-livery="prata"] .site-head::after { content: ''; position: absolute; top: 0; bottom: 0; right: 262px; width: 14px; background: #16181A; transform: skewX(-24deg); }
-[data-livery="prata"] .head-row { position: relative; z-index: 1; }
+/* O rasgo é um fundo em gradiente de arestas vivas, para não cortar o painel das pinturas. */
+[data-livery="prata"] .site-head { background: linear-gradient(114deg, var(--head-bg) 0, var(--head-bg) calc(100% - 300px), #16181A calc(100% - 300px), #16181A calc(100% - 288px), var(--head-bg) calc(100% - 288px), var(--head-bg) calc(100% - 270px), #E2231A calc(100% - 270px)); }
 [data-livery="prata"] .menu-btn { background: var(--head-bg); }
 [data-livery="prata"] .stripes { display: none; }
 [data-livery="prata"] .grid td.c-geral { background: var(--fill); color: var(--on-fill); }
 [data-livery="prata"] .grid thead .c-geral { color: var(--text); }
-@media (max-width: 899px) { [data-livery="prata"] .site-head::before { width: 190px; } [data-livery="prata"] .site-head::after { right: 152px; } }
+@media (max-width: 899px) { [data-livery="prata"] .site-head { background: linear-gradient(114deg, var(--head-bg) 0, var(--head-bg) calc(100% - 150px), #16181A calc(100% - 150px), #16181A calc(100% - 140px), var(--head-bg) calc(100% - 140px), var(--head-bg) calc(100% - 126px), #E2231A calc(100% - 126px)); } }
 
 /* Brawn GP: posições em blocos pretos, pontos em blocos fluorescentes */
 [data-livery="fluo"] .grid .c-pos { text-align: center; }
