@@ -393,10 +393,22 @@
     if (!b) return;
     document.documentElement.setAttribute('data-livery', b.dataset.id);
     try { localStorage.setItem('f88-pintura', b.dataset.id); } catch (err) {}
-    renderLiveries();
+    // O painel fica aberto depois de escolher, para se poder experimentar várias pinturas.
+    Array.prototype.forEach.call(this.querySelectorAll('button[data-id]'), function (x) {
+      x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+    });
   });
   if (!LIVERIES.some(function (l) { return l.id === currentLivery(); })) document.documentElement.setAttribute('data-livery', DEFAULT_LIVERY);
   renderLiveries();
+
+  // O painel das pinturas fecha ao tocar fora dele ou ao carregar em Escape.
+  var liveryPop = document.getElementById('livery-pop');
+  document.addEventListener('click', function (e) {
+    if (liveryPop.open && !liveryPop.contains(e.target)) liveryPop.open = false;
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && liveryPop.open) { liveryPop.open = false; liveryPop.querySelector('summary').focus(); }
+  });
 
   getJSON('data/seasons.json').then(function (c) {
     cfg = c;
