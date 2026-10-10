@@ -290,19 +290,16 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 [data-livery="vermelho-branco"] .grid thead th { color: var(--text); border-bottom: 3px solid var(--text); }
 [data-livery="vermelho-branco"] .grid td.c-geral, [data-livery="vermelho-branco"] .big span { color: var(--text); }
 
-/* Gulf e McLaren Hamilton: cada linha é um cartão com uma barra à esquerda */
-[data-livery="azul-laranja"] .table-wrap, [data-livery="prata"] .table-wrap { background: transparent; border: 0; border-radius: 0; }
-[data-livery="azul-laranja"] .grid, [data-livery="prata"] .grid { border-spacing: 0 6px; }
-[data-livery="azul-laranja"] .grid thead th, [data-livery="prata"] .grid thead th { background: var(--bg); border-bottom: 0; color: var(--text); }
-[data-livery="azul-laranja"] .grid tbody th, [data-livery="azul-laranja"] .grid tbody td,
+/* McLaren Hamilton: cada linha é um cartão com uma barra à esquerda */
+[data-livery="prata"] .table-wrap { background: transparent; border: 0; border-radius: 0; }
+[data-livery="prata"] .grid { border-spacing: 0 6px; }
+[data-livery="prata"] .grid thead th { background: var(--bg); border-bottom: 0; color: var(--text); }
 [data-livery="prata"] .grid tbody th, [data-livery="prata"] .grid tbody td { background: var(--panel); border-bottom: 0; }
-[data-livery="azul-laranja"] .grid tbody tr > :first-child { border-left: 10px solid var(--text); }
-[data-livery="azul-laranja"] .grid tbody tr > .c-pos.top { border-left-color: var(--fill); }
 [data-livery="prata"] .grid tbody tr > :first-child { border-left: 10px solid #8E969D; }
 [data-livery="prata"] .grid tbody tr > .c-pos.top { border-left-color: #E2231A; }
-[data-livery="azul-laranja"] .grid .c-pos, [data-livery="prata"] .grid .c-pos { width: 58px; }
-[data-livery="azul-laranja"] .standings .c-name, [data-livery="prata"] .standings .c-name { left: 58px; }
-[data-livery="azul-laranja"] .grid td.c-pos, [data-livery="prata"] .grid td.c-pos { color: var(--text); }
+[data-livery="prata"] .grid .c-pos { width: 58px; }
+[data-livery="prata"] .standings .c-name { left: 58px; }
+[data-livery="prata"] .grid td.c-pos { color: var(--text); }
 
 /* McLaren Hamilton: rasgo vermelho inclinado no canto, títulos em itálico, pontos em bloco escuro */
 [data-livery="prata"] h1, [data-livery="prata"] h2, [data-livery="prata"] .logo, [data-livery="prata"] .card-t, [data-livery="prata"] .c-pos, [data-livery="prata"] .stat-v, [data-livery="prata"] .num, [data-livery="prata"] .chip-n { font-style: italic; }
@@ -344,3 +341,31 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 [data-livery="retro"] .grid tbody tr:has(> .c-pos.top) > * { color: #14213D; }
 [data-livery="retro"] .grid tbody tr:has(> .c-pos.top) .fl { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
 [data-livery="retro"] .standings .c-name { box-shadow: none; }
+
+/* Gulf: faixa laranja vertical pela página, com as posições em círculos de número de corrida */
+[data-livery="azul-laranja"] { --S: 46px; --G: 10px; --E: 4px; --sx: calc(max(0px, (100% - 1200px) / 2) + 16px); }
+@media (min-width: 700px) { [data-livery="azul-laranja"] { --S: 62px; --G: 18px; --E: 6px; } }
+[data-livery="azul-laranja"] body { position: relative; min-height: 100vh; }
+[data-livery="azul-laranja"] body::before { content: ''; position: absolute; top: 0; bottom: 0; left: var(--sx); width: var(--S); z-index: -1;
+  background: linear-gradient(90deg, #10244A 0 var(--E), #F26A1B var(--E) calc(100% - var(--E)), #10244A calc(100% - var(--E))); }
+[data-livery="azul-laranja"] .site-head { background: transparent; }
+[data-livery="azul-laranja"] .stripes { display: none; }
+[data-livery="azul-laranja"] .wrap { padding-left: calc(16px + var(--S) + var(--G)); }
+[data-livery="azul-laranja"] .table-wrap { background: transparent; border: 0; border-radius: 0; }
+[data-livery="azul-laranja"] .table-wrap:has(.c-pos) { margin-left: calc(-1 * (var(--S) + var(--G))); }
+[data-livery="azul-laranja"] .grid th, [data-livery="azul-laranja"] .grid td { border-bottom: 3px solid var(--text); }
+[data-livery="azul-laranja"] .grid thead th { color: var(--text); }
+[data-livery="azul-laranja"] .grid tbody tr:last-child th, [data-livery="azul-laranja"] .grid tbody tr:last-child td { border-bottom: 3px solid var(--text); }
+[data-livery="azul-laranja"] .grid .c-pos { width: var(--S); min-width: var(--S); padding: 0; text-align: center; border-bottom: 0 !important;
+  background: linear-gradient(90deg, #10244A 0 var(--E), #F26A1B var(--E) calc(100% - var(--E)), #10244A calc(100% - var(--E))); }
+[data-livery="azul-laranja"] .grid thead .c-pos { color: var(--text); font-size: 11px; letter-spacing: 0.04em; }
+[data-livery="azul-laranja"] .grid td.c-pos { height: 60px; font-size: 20px; color: var(--text);
+  background: radial-gradient(circle at center, #FFFFFF 0 16px, #10244A 16px 19px, transparent 19.5px), linear-gradient(90deg, #10244A 0 var(--E), #F26A1B var(--E) calc(100% - var(--E)), #10244A calc(100% - var(--E))); }
+[data-livery="azul-laranja"] .grid .c-name { padding-left: var(--G); }
+[data-livery="azul-laranja"] .standings .c-name { left: var(--S); background: var(--bg); box-shadow: none; }
+[data-livery="azul-laranja"] .grid td.c-geral { background: #F26A1B; color: var(--text); box-shadow: inset 0 0 0 3px #10244A; text-align: center; }
+[data-livery="azul-laranja"] .grid thead .c-geral { text-align: center; }
+[data-livery="azul-laranja"] .card .num { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: #FFFFFF; border: 3px solid #10244A; color: #10244A; font-size: 20px; }
+@media (min-width: 700px) {
+  [data-livery="azul-laranja"] .grid td.c-pos { font-size: 24px; background: radial-gradient(circle at center, #FFFFFF 0 20px, #10244A 20px 24px, transparent 24.5px), linear-gradient(90deg, #10244A 0 var(--E), #F26A1B var(--E) calc(100% - var(--E)), #10244A calc(100% - var(--E))); }
+}
