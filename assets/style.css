@@ -136,7 +136,7 @@ h2 { margin: 40px 0 12px; font-size: calc(34px * var(--display-scale)); line-hei
 .sw { width: 44px; height: 24px; border-radius: 4px; border: 1px solid #8a8a8a; flex: none; }
 .stripes { height: var(--stripes-h); background: var(--stripes); }
 
-@media (min-width: 900px) {
+@media (min-width: 1120px) {
   .menu-btn { display: none; }
   .menu { display: flex; width: auto; align-items: center; gap: 16px; padding-bottom: 0; }
   .nav { flex-direction: row; gap: 2px; }
@@ -281,7 +281,12 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 [data-livery="verde-amarelo"] .card .num { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: var(--fill); color: var(--on-fill); }
 
 /* McLaren Senna: bloco vermelho com corte diagonal */
-[data-livery="vermelho-branco"] .stripes { height: 64px; background: var(--bg); clip-path: polygon(100% 0, 100% 100%, 45% 100%); }
+/* O cabeçalho é um bloco vermelho à esquerda, cortado na diagonal para branco; o menu fica na parte branca. */
+[data-livery="vermelho-branco"] { --head-bg: #FFFFFF; --head-text: #1A1A1A; --head-accent: #D01F15; --cut: calc((max(16px, (100vw - 1200px) / 2 + 16px) + 232px) * 0.883); }
+[data-livery="vermelho-branco"] .site-head { background: linear-gradient(118deg, #D01F15 0, #D01F15 var(--cut), #FFFFFF var(--cut)) top / 100% 76px no-repeat, #FFFFFF; border-bottom: 3px solid #1A1A1A; }
+[data-livery="vermelho-branco"] .head-row { padding-top: 16px; padding-bottom: 16px; }
+[data-livery="vermelho-branco"] .logo, [data-livery="vermelho-branco"] .logo span { color: #FFFFFF; padding: 0; line-height: 44px; }
+[data-livery="vermelho-branco"] .stripes { display: none; }
 [data-livery="vermelho-branco"] .grid thead th { color: var(--text); border-bottom: 3px solid var(--text); }
 [data-livery="vermelho-branco"] .grid td.c-geral, [data-livery="vermelho-branco"] .big span { color: var(--text); }
 
