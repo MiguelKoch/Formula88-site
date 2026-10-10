@@ -67,6 +67,13 @@ Copy a season folder, empty its `races` list and `races/` folder, add it to the 
   cookies and loads nothing from other websites; the fonts are in `assets/fonts/` (all under the
   SIL Open Font License).
 
+## After changing the design or the code
+
+`index.html` loads `assets/style.css`, `assets/app.js` and `assets/scoring.js` with a version
+tag (`?v=...`). Change that tag whenever one of those files changes, so visitors get the new
+version on a normal page load instead of a cached copy. Data files in `data/` do not need this:
+the site re-checks them on every visit.
+
 ## Running it locally
 
 ```
