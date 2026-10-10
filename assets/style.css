@@ -264,7 +264,10 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 [data-livery="riscas"] .grid td.c-geral, [data-livery="riscas"] .big span { color: var(--text); }
 
 /* Lotus 72D: moldura dupla dourada à volta da página */
-[data-livery="preto-dourado"] body::before, [data-livery="preto-dourado"] body::after { content: ''; position: fixed; pointer-events: none; z-index: 30; }
+[data-livery="preto-dourado"] body { position: relative; min-height: 100vh; }
+[data-livery="preto-dourado"] body::before, [data-livery="preto-dourado"] body::after { content: ''; position: absolute; pointer-events: none; z-index: 30; }
+/* a linha dupla por baixo do cabeçalho liga à moldura e pára aí */
+[data-livery="preto-dourado"] .stripes { margin: 0 11px; }
 [data-livery="preto-dourado"] body::before { inset: 5px; border: 2px solid var(--accent); }
 [data-livery="preto-dourado"] body::after { inset: 10px; border: 1px solid var(--accent); }
 [data-livery="preto-dourado"] .wrap { padding-left: 24px; padding-right: 24px; }
