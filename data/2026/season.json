@@ -253,7 +253,8 @@
       "duration": "15 min",
       "surface": "Seco",
       "ballast": true,
-      "hasResults": true
+      "hasResults": true,
+      "hasReplay": true
     },
     {
       "id": "vila-real",

@@ -20,6 +20,8 @@
   var app = document.getElementById('app');
   var cfg = null;
   var cache = {};
+  var current = null;        // temporada que está no ecrã, para a exportação
+  var activeReplay = null;   // replay a correr, para o parar ao mudar de página
 
   // ---------- utilitários ----------
   function esc(s) {
@@ -169,7 +171,7 @@
           return '<td class="cell"><span class="p' + (x.fl ? ' fl' : '') + (x.pos === 1 && !x.status ? ' win' : '') + '">' + posLabel(x) + '</span><span class="s' + (x.dropped ? ' dropped' : '') + '">' + x.pts + ' pts</span></td>';
         }).join('') + '<td class="c-num muted">' + d.total + '</td><td class="c-num c-geral">' + d.geral + '</td></tr>';
     });
-    h += '</tbody></table></div>' + legend(D) + '<p class="hint">Toca num piloto ou numa prova para ver o detalhe. No telemóvel, desliza a tabela para o lado.</p>';
+    h += '</tbody></table></div>' + legend(D) + '<p class="actions tight">' + '<button type="button" class="btn ghost small" data-export="season">Exportar .xlsx</button>' + '</p><p class="hint">Toca num piloto ou numa prova para ver o detalhe. No telemóvel, desliza a tabela para o lado.</p>';
     return h;
   }
 
@@ -184,7 +186,7 @@
         t.members.map(function (m) { return '<a href="' + link(sid, ['piloto', m.id]) + '">' + esc(m.name) + '</a> <span class="muted">(' + m.geral + ')</span>'; }).join('<br>') +
         '</td><td class="c-num c-geral">' + t.pts + '</td></tr>';
     });
-    return h + '</tbody></table></div><p class="hint">Os pontos de uma equipa são a soma dos pontos dos seus pilotos na classificação geral.</p>';
+    return h + '</tbody></table></div>' + (c.held.length ? '<p class="actions tight">' + '<button type="button" class="btn ghost small" data-export="season">Exportar .xlsx</button>' + '</p>' : '') + '<p class="hint">Os pontos de uma equipa são a soma dos pontos dos seus pilotos na classificação geral.</p>';
   }
 
   function racesList(D, sid) {
@@ -218,13 +220,17 @@
     if (r.surface) facts.push({ l: 'Piso', v: r.surface, cls: 'sm', sub: r.ballast === true ? 'com lastro' : (r.ballast === false ? 'sem lastro' : '') });
     if (r.results) facts.push({ l: 'Pilotos', v: String(r.results.length), cls: 'sm', sub: 'em pista' });
     h += statBoxes(facts);
+    if (r.hasReplay) {
+      h += '<h2>Replay da corrida</h2><div class="replay-mount" id="replay-mount"><button type="button" class="btn" data-replay="' + esc(sid + '/' + r.id) + '">Ver o replay</button>' +
+        '<p class="hint">Reconstituição volta a volta, a partir dos tempos de cada piloto.</p></div>';
+    }
     if (!r.results) return h + empty('Resultados por lançar.');
 
     var rows = r.results.slice().sort(function (a, b) { return (a.pos || 999) - (b.pos || 999); });
     var hasGrid = rows.some(function (e) { return e.grid != null; });
     var hasLap = rows.some(function (e) { return e.bestLap; });
     var hasPen = rows.some(function (e) { return e.penalty; });
-    h += '<h2>Classificação da prova</h2><div class="table-wrap"><table class="grid"><thead><tr><th class="c-pos" scope="col">Pos</th><th class="c-name" scope="col">Piloto</th>' +
+    h += '<div class="h2-row"><h2>Classificação da prova</h2><button type="button" class="btn ghost small" data-export="race:' + esc(r.id) + '">Exportar .xlsx</button></div><div class="table-wrap"><table class="grid"><thead><tr><th class="c-pos" scope="col">Pos</th><th class="c-name" scope="col">Piloto</th>' +
       (hasGrid ? '<th scope="col">Grelha</th><th scope="col">Ganhas</th>' : '') + (hasLap ? '<th class="c-num" scope="col">Melhor volta</th>' : '') +
       (hasPen ? '<th class="c-num" scope="col">Penalização</th>' : '') + '<th class="c-num c-geral" scope="col">Pontos</th></tr></thead><tbody>';
     rows.forEach(function (e) {
@@ -342,7 +348,9 @@
     var arg = known.indexOf(parts[0]) >= 0 ? parts[2] : parts[1];
     renderNav(sid, page);
     closeMenu();
+    if (activeReplay) { activeReplay.destroy(); activeReplay = null; }
     loadSeason(sid).then(function (D) {
+      current = { D: D, sid: sid };
       if (!page) return home(D, sid);
       var fn = PAGES[page];
       return fn ? fn(D, sid, arg) : notFound(sid);
@@ -363,6 +371,55 @@
     e.preventDefault();
     var el = document.getElementById(a.getAttribute('href').slice(1));
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ---------- exportação para Excel ----------
+  function raceSheet(D, r) {
+    var c = D.calc, rows = [['Pos', 'Piloto', 'Equipa', 'Grelha', 'Melhor volta', 'Penalização (s)', 'Estado', 'Pontos']];
+    r.results.slice().sort(function (a, b) { return (a.pos || 999) - (b.pos || 999); }).forEach(function (e) {
+      var d = c.driverById[e.driver], x = d ? d.races.filter(function (q) { return q.race === r.id; })[0] : null;
+      rows.push([e.pos || '', d ? d.name : e.driver, d && d.team ? d.team.name : '', e.grid == null ? '' : e.grid, e.bestLap || '',
+        e.penalty || '', e.status || (r.fastestLap === e.driver ? 'Volta mais rápida' : ''), x ? x.pts : '']);
+    });
+    return { name: r.name, rows: rows, widths: [6, 24, 28, 8, 13, 15, 18, 8] };
+  }
+  function seasonSheets(D) {
+    var c = D.calc, held = c.held;
+    var head = ['Pos', 'Piloto', 'Equipa'].concat(held.map(function (r) { return r.name; }), ['Total', 'Geral', 'Presenças', 'Vitórias', 'Pódios', 'Voltas mais rápidas']);
+    var rows = [head];
+    c.drivers.filter(function (d) { return d.presences > 0; }).forEach(function (d) {
+      rows.push([d.rank, d.name, d.team ? d.team.name : ''].concat(d.races.map(function (x) { return x.attended ? x.pts : ''; }), [d.total, d.geral, d.presences, d.wins, d.podiums, d.fastestLaps]));
+    });
+    var sheets = [{ name: 'Pilotos', rows: rows, widths: [6, 24, 28].concat(held.map(function () { return 14; }), [8, 8, 11, 9, 8, 19]) }];
+    if (c.teams.length) {
+      sheets.push({ name: 'Equipas', widths: [6, 30, 24, 10, 24, 10, 10], rows: [['Pos', 'Equipa', 'Piloto 1', 'Pontos 1', 'Piloto 2', 'Pontos 2', 'Pontos']].concat(c.teams.map(function (t) {
+        var m = t.members;
+        return [t.rank, t.name, m[0] ? m[0].name : '', m[0] ? m[0].geral : '', m[1] ? m[1].name : '', m[1] ? m[1].geral : '', t.pts];
+      })) });
+    }
+    return sheets.concat(held.map(function (r) { return raceSheet(D, r); }));
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-export]');
+    if (b && current) {
+      var what = b.dataset.export, D = current.D;
+      if (what === 'season') window.F88Xlsx.download('formula88-' + current.sid + '.xlsx', seasonSheets(D));
+      else {
+        var r = D.races.filter(function (q) { return q.id === what.slice(5); })[0];
+        if (r && r.results) window.F88Xlsx.download('formula88-' + current.sid + '-' + r.id + '.xlsx', [raceSheet(D, r)]);
+      }
+      return;
+    }
+    var rb = e.target.closest('[data-replay]');
+    if (rb) {
+      var mount = document.getElementById('replay-mount');
+      rb.disabled = true; rb.textContent = 'A carregar…';
+      var parts = rb.dataset.replay.split('/');
+      getJSON('data/' + parts[0] + '/replays/' + parts[1] + '.json').then(function (data) {
+        if (!document.body.contains(mount)) return;
+        activeReplay = window.F88Replay.mount(mount, data);
+      }).catch(function (err) { mount.innerHTML = '<p class="empty">' + esc(err.message) + '</p>'; });
+    }
   });
 
   // ---------- menu, temporada e pintura ----------

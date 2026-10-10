@@ -39,6 +39,29 @@ data/
 
 That is all. Points, the dropped worst result, tie-breaks and team totals update by themselves.
 
+### Adding a race replay
+
+The replay on a race page is rebuilt from lap times, so it needs every driver's time for every lap.
+
+1. Create `data/<season>/replays/<race-id>.json`:
+
+   ```json
+   {
+     "track": [[5.98, 1.10], [4.56, 1.10], [3.72, 1.06]],
+     "drivers": [
+       { "name": "David Santos", "laps": [65.394, 59.105, 57.903] },
+       { "name": "Gonçalo Portugal", "laps": [68.159, 59.727, 58.141] }
+     ]
+   }
+   ```
+
+   - `track` is the outline of the circuit as a closed loop of control points (any scale); the
+     first point is the start/finish line. About 30 to 60 points is enough.
+   - `laps` are in seconds, in order. A driver who stopped early simply has fewer laps.
+   - Drivers here are matched by nothing: guests who are not in the league can be included.
+
+2. In `data/<season>/season.json`, set `"hasReplay": true` on that race.
+
 ### Adding a driver, a team or a race to the calendar
 
 Edit `data/<season>/season.json`:
@@ -58,6 +81,11 @@ bonus. `dropWorstFromRace` is the race number from which each driver's worst sco
 Copy a season folder, empty its `races` list and `races/` folder, add it to the top of
 `data/seasons.json` and set `current` to it. Older seasons stay available as an archive.
 
+## Excel export
+
+The "Exportar .xlsx" buttons on the standings and race pages build the spreadsheet in the
+visitor's browser from the same data (`assets/xlsx.js`); nothing needs to be maintained.
+
 ## Other things
 
 - `content/regulamento.html` is the rulebook text.
@@ -69,8 +97,8 @@ Copy a season folder, empty its `races` list and `races/` folder, add it to the 
 
 ## After changing the design or the code
 
-`index.html` loads `assets/style.css`, `assets/app.js` and `assets/scoring.js` with a version
-tag (`?v=...`). Change that tag whenever one of those files changes, so visitors get the new
+`index.html` loads the stylesheet and the scripts in `assets/` with a version
+tag (`?v=...`). Change that tag (on every line that has it) whenever one of those files changes, so visitors get the new
 version on a normal page load instead of a cached copy. Data files in `data/` do not need this:
 the site re-checks them on every visit.
 
