@@ -62,6 +62,15 @@ The replay on a race page is rebuilt from lap times, so it needs every driver's 
 
 2. In `data/<season>/season.json`, set `"hasReplay": true` on that race.
 
+### Pictures on the cards
+
+Optional. Put the files in `assets/img/` and point to them from `data/<season>/season.json`:
+
+- a race: `"image": "assets/img/pistas/viana.jpg"` (shown across the top of its card in Provas);
+- a driver: `"photo": "assets/img/pilotos/pedro-gomes.jpg"` (shown as a circle on the card in Pilotos).
+
+Without those fields the cards look as before. Keep the files small (about 600 px wide is plenty).
+
 ### Adding a driver, a team or a race to the calendar
 
 Edit `data/<season>/season.json`:

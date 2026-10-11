@@ -50,7 +50,7 @@
       var classified = rs.filter(function (x) { return x.attended && x.pos && x.status !== 'DSQ' && x.status !== 'DNF'; });
 
       return {
-        id: d.id, name: d.name, team: teamOf[d.id] || null, races: rs,
+        id: d.id, name: d.name, photo: d.photo || null, team: teamOf[d.id] || null, races: rs,
         total: total, geral: total - droppedPts,
         presences: rs.filter(function (x) { return x.attended; }).length,
         wins: classified.filter(function (x) { return x.pos === 1; }).length,

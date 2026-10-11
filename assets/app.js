@@ -196,7 +196,7 @@
       var w = r.results && r.results.filter(function (e) { return e.pos === 1; })[0];
       var d = w && D.calc.driverById[w.driver];
       var meta = [r.karts, r.surface ? r.surface.toLowerCase() : null].filter(Boolean).join(' · ');
-      return '<a class="card card-link" href="' + link(sid, ['prova', r.id]) + '"><p class="card-k"><span>Prova ' + (i + 1) + '</span><span>' + esc(fmtDate(r.date)) + '</span></p><p class="card-t">' + esc(r.name) + '</p><p class="muted">' + esc(meta || ' ') + '</p>' +
+      return '<a class="card card-link' + (r.image ? ' has-img' : '') + '" href="' + link(sid, ['prova', r.id]) + '">' + (r.image ? '<img class="card-img" src="' + esc(r.image) + '" alt="" loading="lazy">' : '') + '<p class="card-k"><span>Prova ' + (i + 1) + '</span><span>' + esc(fmtDate(r.date)) + '</span></p><p class="card-t">' + esc(r.name) + '</p><p class="muted">' + esc(meta || ' ') + '</p>' +
         '<div class="kv"><span>Vencedor</span><strong' + (d ? ' class="accent"' : '') + '>' + esc(d ? d.name : 'Por disputar') + '</strong></div></a>';
     }).join('') + '</div>';
   }
@@ -255,7 +255,7 @@
     var racing = c.held.length > 0;
     return h + '<div class="cards tight">' + c.drivers.map(function (d) {
       var ranked = racing && d.presences > 0;
-      return '<a class="card card-link driver" href="' + link(sid, ['piloto', d.id]) + '"><span class="num' + (ranked && d.rank <= 3 ? '' : ' dim') + '">' + (ranked ? d.rank : '·') + '</span><span class="grow"><strong>' + esc(d.name) + '</strong><span class="muted">' + esc(d.team ? d.team.name : 'Sem equipa') + '</span></span>' +
+      return '<a class="card card-link driver" href="' + link(sid, ['piloto', d.id]) + '"><span class="num' + (ranked && d.rank <= 3 ? '' : ' dim') + '">' + (ranked ? d.rank : '·') + '</span>' + (d.photo ? '<img class="avatar" src="' + esc(d.photo) + '" alt="" loading="lazy">' : '') + '<span class="grow"><strong>' + esc(d.name) + '</strong><span class="muted">' + esc(d.team ? d.team.name : 'Sem equipa') + '</span></span>' +
         (racing ? '<span class="pts">' + d.geral + '<small>pts</small></span>' : '') + '</a>';
     }).join('') + '</div>';
   }
