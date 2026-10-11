@@ -9,12 +9,14 @@ quando é que cada kart cruzou a meta pela primeira vez (a partida é lançada, 
 
 Para os pilotos com volta(s) de atraso a folha só dá a diferença dentro do grupo deles, por isso
 falta uma incógnita por grupo. É estimada assumindo que os karts cruzam a meta em fila, com
-intervalos regulares: escolhe-se o valor que deixa a fila mais regular. É uma estimativa.
+intervalos regulares: escolhe-se o valor que deixa a fila mais regular. Com a coluna Grelha, usa-se
+antes o lugar de partida de cada um (reta ajustada aos pilotos de valor conhecido). É uma estimativa.
 
 Entrada: CSV pela ordem da classificação, com as colunas
-    Piloto, 1, 2, 3, ..., Dif
+    Piloto, Grelha, 1, 2, 3, ..., Dif
   - voltas em segundos (59.135) ou m:ss.mmm (1:02.656); vazio = volta não feita
   - Dif: vazio ou 0 no vencedor; segundos ou m:ss.mmm; "1 Volta" no primeiro de cada grupo atrasado
+  - Grelha (opcional): lugar de partida, 1 = pole
   - outras colunas (Kart, Média, ...) são ignoradas
 
 Uso:
@@ -42,6 +44,7 @@ def read(path):
         lap_cols = sorted((c for c in r.fieldnames if c.strip().isdigit()), key=lambda c: int(c))
         dif_col = next((c for c in r.fieldnames if c.strip().lower() in ('dif', 'diferença', 'diferenca')), None)
         name_col = next(c for c in r.fieldnames if c.strip().lower() in ('piloto', 'nome', 'name'))
+        grid_col = next((c for c in r.fieldnames if c.strip().lower() in ('grelha', 'grid')), None)
         if not lap_cols or dif_col is None:
             sys.exit('O CSV precisa de colunas de voltas (1, 2, 3, ...) e de uma coluna Dif.')
         for row in r:
@@ -56,7 +59,8 @@ def read(path):
             raw = (row[dif_col] or '').strip()
             lapped = bool(re.search(r'volta|lap', raw, re.I))
             rows.append({'name': row[name_col].strip(), 'laps': laps, 'sum': sum(laps),
-                         'dif': None if lapped else (secs(raw) or 0.0), 'lapped': lapped})
+                         'dif': None if lapped else (secs(raw) or 0.0), 'lapped': lapped,
+                         'grid': int(row[grid_col]) if grid_col and (row[grid_col] or '').strip().isdigit() else None})
     return rows
 
 
@@ -85,7 +89,17 @@ def solve(rows):
     known = [r['rel'] for r in groups[0]]
     for r in groups[0]:
         r['start'] = r['rel']; r['estimated'] = False
+    use_grid = all(r['grid'] is not None for r in rows) and len(groups[0]) >= 3
+    if use_grid:                                   # reta volta 0 = a + b * lugar na grelha, pelos pilotos conhecidos
+        xs = [r['grid'] for r in groups[0]]; n = len(xs); mx = sum(xs) / n; my = sum(known) / n
+        b = sum((x - mx) * (y - my) for x, y in zip(xs, known)) / (sum((x - mx) ** 2 for x in xs) or 1)
+        a = my - b * mx
     for g in groups[1:]:
+        if use_grid:
+            h = sum(a + b * r['grid'] - r['rel'] for r in g) / len(g)
+            for r in g:
+                r['start'] = h + r['rel']; r['estimated'] = True
+            continue
         lo, hi = min(known), max(known)
         gap = (hi - lo) / max(len(known) - 1, 1) or 0.3
         span = max(r['rel'] for r in g) - min(r['rel'] for r in g)

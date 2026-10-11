@@ -232,14 +232,17 @@
     var hasPen = rows.some(function (e) { return e.penalty; });
     var hasGap = rows.some(function (e) { return e.gap; });
     h += '<div class="h2-row"><h2>Classificação da prova</h2><button type="button" class="btn ghost small" data-export="race:' + esc(r.id) + '">Exportar .xlsx</button></div><div class="table-wrap"><table class="grid race"><thead><tr><th class="c-pos" scope="col">Pos</th><th class="c-name" scope="col">Piloto</th>' +
-      (hasGrid ? '<th scope="col">Grelha</th><th scope="col">Ganhas</th>' : '') + (hasGap ? '<th class="c-num" scope="col">Diferença</th>' : '') + (hasLap ? '<th class="c-num" scope="col">Melhor volta</th>' : '') +
+      (hasGrid ? '<th class="c-grid" scope="col">Grelha</th><th class="c-grid" scope="col">Ganhas</th>' : '') + (hasGap ? '<th class="c-num" scope="col">Diferença</th>' : '') + (hasLap ? '<th class="c-num" scope="col">Melhor volta</th>' : '') +
       (hasPen ? '<th class="c-num" scope="col">Penalização</th>' : '') + '<th class="c-num c-geral" scope="col">Pontos</th></tr></thead><tbody>';
     rows.forEach(function (e) {
       var d = c.driverById[e.driver];
       var x = d ? d.races.filter(function (q) { return q.race === r.id; })[0] : null;
       var g = e.grid != null && e.pos ? e.grid - e.pos : null;
-      h += '<tr><td class="c-pos' + (e.pos <= 3 && !e.status ? ' top' : '') + '">' + (e.status === 'DSQ' ? 'DSQ' : (e.pos || '—')) + '</td><th class="c-name" scope="row"><a href="' + link(sid, ['piloto', e.driver]) + '">' + esc(d ? d.name : e.driver) + '</a>' + (e.status === 'DNF' ? ' <span class="tag">DNF</span>' : '') + '</th>' +
-        (hasGrid ? '<td class="muted">' + (e.grid != null ? e.grid + 'º' : '—') + '</td><td class="' + (g > 0 ? 'up' : (g < 0 ? 'down' : 'muted')) + '">' + (g == null ? '—' : (g > 0 ? '+' + g : (g < 0 ? '−' + (-g) : '='))) + '</td>' : '') +
+      var gCls = g > 0 ? 'up' : (g < 0 ? 'down' : 'muted'), gTxt = g == null ? '—' : (g > 0 ? '+' + g : (g < 0 ? '−' + (-g) : '='));
+      // no telemóvel a grelha e as posições ganhas vão por baixo do nome, em vez de duas colunas
+      var sub = hasGrid && e.grid != null ? '<small class="grid-sub">partiu de ' + e.grid + 'º' + (g ? ' · <b class="' + gCls + '">' + (g > 0 ? '▲' : '▼') + Math.abs(g) + '</b>' : '') + '</small>' : '';
+      h += '<tr><td class="c-pos' + (e.pos <= 3 && !e.status ? ' top' : '') + '">' + (e.status === 'DSQ' ? 'DSQ' : (e.pos || '—')) + '</td><th class="c-name" scope="row"><a href="' + link(sid, ['piloto', e.driver]) + '">' + esc(d ? d.name : e.driver) + '</a>' + (e.status === 'DNF' ? ' <span class="tag">DNF</span>' : '') + sub + '</th>' +
+        (hasGrid ? '<td class="c-grid muted">' + (e.grid != null ? e.grid + 'º' : '—') + '</td><td class="c-grid ' + gCls + '">' + gTxt + '</td>' : '') +
         (hasGap ? '<td class="c-num muted">' + esc(e.gap || (e.pos === 1 ? '–' : '—')) + '</td>' : '') +
         (hasLap ? '<td class="c-num' + (r.fastestLap === e.driver ? ' fl' : '') + '">' + esc(e.bestLap || '—') + '</td>' : '') +
         (hasPen ? '<td class="c-num muted">' + (e.penalty ? '+' + e.penalty + ' s' : '—') + '</td>' : '') +

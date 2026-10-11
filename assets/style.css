@@ -238,6 +238,8 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 .cell.dns { color: var(--muted); }
 .tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border: 1px solid currentColor; border-radius: 4px; font-size: 11px; font-weight: 700; color: var(--muted); }
 /* nomes fixos à esquerda quando a tabela desliza */
+.grid .c-name .grid-sub { display: none; font-weight: 400; font-size: 11px; color: var(--muted); margin-top: -4px; padding-bottom: 4px; }
+.grid-sub b.up { color: var(--up); } .grid-sub b.down { color: var(--down); }
 /* classificação de uma prova no telemóvel: mais apertada, para caber sem deslizar para o lado */
 @media (max-width: 560px) {
   .grid.race th, .grid.race td { padding: 8px 6px; font-size: 13px; }
@@ -245,6 +247,8 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
   .grid.race .c-pos { width: 34px; padding-left: 10px; font-size: calc(22px * var(--display-scale)); }
   .grid.race thead .c-pos { font-size: 10px; }
   .grid.race th.c-name { white-space: normal; }
+  .grid.race .c-grid { display: none; }
+  .grid.race .c-name .grid-sub { display: block; }
   .grid.race td.c-geral { font-size: calc(22px * var(--display-scale)); padding-right: 10px; }
 }
 .standings .c-pos { position: sticky; left: 0; background: var(--panel); z-index: 2; }

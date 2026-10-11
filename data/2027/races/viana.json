@@ -5,85 +5,100 @@
     {
       "driver": "goncalo-portugal",
       "pos": 1,
+      "grid": 1,
       "bestLap": "0:59.135"
     },
     {
       "driver": "bruno-silva",
       "pos": 2,
-      "bestLap": "1:00.323",
-      "gap": "+17.241"
+      "grid": 4,
+      "gap": "+17.241",
+      "bestLap": "1:00.323"
     },
     {
       "driver": "david-santos",
       "pos": 3,
-      "bestLap": "0:59.764",
-      "gap": "+17.511"
+      "grid": 2,
+      "gap": "+17.511",
+      "bestLap": "0:59.764"
     },
     {
       "driver": "miguel-carmo",
       "pos": 4,
-      "bestLap": "1:00.415",
-      "gap": "+23.100"
+      "grid": 3,
+      "gap": "+23.100",
+      "bestLap": "1:00.415"
     },
     {
       "driver": "fabio-oliveira",
       "pos": 5,
-      "bestLap": "1:00.608",
-      "gap": "+23.817"
+      "grid": 6,
+      "gap": "+23.817",
+      "bestLap": "1:00.608"
     },
     {
       "driver": "sergio-costa",
       "pos": 6,
-      "bestLap": "1:00.455",
-      "gap": "+28.274"
+      "grid": 7,
+      "gap": "+28.274",
+      "bestLap": "1:00.455"
     },
     {
       "driver": "hugo-oliveira",
       "pos": 7,
-      "bestLap": "1:00.585",
-      "gap": "+29.149"
+      "grid": 9,
+      "gap": "+29.149",
+      "bestLap": "1:00.585"
     },
     {
       "driver": "sergio-machado",
       "pos": 8,
-      "bestLap": "1:00.552",
-      "gap": "+30.015"
+      "grid": 5,
+      "gap": "+30.015",
+      "bestLap": "1:00.552"
     },
     {
       "driver": "tiago-rodrigues",
       "pos": 9,
-      "bestLap": "1:00.966",
-      "gap": "+45.108"
+      "grid": 8,
+      "gap": "+45.108",
+      "bestLap": "1:00.966"
     },
     {
       "driver": "daniel-marques",
       "pos": 10,
-      "bestLap": "1:02.427",
-      "gap": "+50.429"
+      "grid": 10,
+      "gap": "+50.429",
+      "bestLap": "1:02.427"
     },
     {
       "driver": "ze",
       "pos": 11,
-      "bestLap": "1:02.590",
-      "gap": "+1:16.310"
+      "grid": 11,
+      "gap": "+1:16.310",
+      "bestLap": "1:02.590"
     },
     {
       "driver": "hugo",
       "pos": 12,
-      "bestLap": "1:03.505",
-      "gap": "+1 volta"
+      "grid": 12,
+      "gap": "+1 volta",
+      "bestLap": "1:03.505"
     },
     {
       "driver": "manuel",
       "pos": 13,
-      "bestLap": "1:05.042",
-      "gap": "+1 volta"
+      "grid": 13,
+      "gap": "+1 volta",
+      "bestLap": "1:05.042"
     },
     {
       "driver": "rui-moura",
       "pos": 14,
-      "bestLap": "1:04.681",
-      "gap": "+1 volta"
+      "grid": 14,
+      "gap": "+1 volta",
+      "bestLap": "1:04.681"
     }
-  ]
+  ],
+  "note": "Grelha definida pela qualificação."
 }
