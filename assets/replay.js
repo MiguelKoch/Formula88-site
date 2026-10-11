@@ -358,7 +358,7 @@
     // em ecrãs largos, as linhas da torre encolhem para caberem todas sem deslizar
     var n = this.race.drivers.length, rowsEl = this.q('.rp-rows'), inner = this.q('.rp-rows-inner');
     var wide = window.matchMedia('(min-width: 901px)').matches, avail = rowsEl.clientHeight;
-    var rh = wide && avail > 0 ? Math.min(40, Math.max(28, Math.floor(avail / n))) : 40;
+    var rh = wide ? (avail > 0 ? Math.min(40, Math.max(28, Math.floor(avail / n))) : 40) : 36;   // no telemóvel, linhas mais baixas
     if (rh !== this.rowH || !inner.style.height) {
       this.rowH = rh; inner.style.height = n * rh + 'px'; this.el.style.setProperty('--rp-rh', rh + 'px');
       var rows = this.rows; Object.keys(rows).forEach(function (k) { rows[k].cache.y = null; });

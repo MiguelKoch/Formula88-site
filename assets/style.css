@@ -453,16 +453,31 @@ button.btn { font: inherit; font-weight: 700; cursor: pointer; }
 .rp-speeds button[aria-pressed="true"] { background: var(--fill); color: var(--on-fill); }
 
 @media (max-width: 900px) {
-  /* no telemóvel: pista, depois os comandos, depois a tabela (os comandos ficam à vista junto da pista) */
-  .rp { display: flex; flex-direction: column; gap: 12px; }
+  /* no telemóvel: pista, comandos numa só faixa e logo a seguir a torre de tempos, tudo compacto para caber no ecrã.
+     A pista e os comandos ficam presos ao topo enquanto se percorre a torre. */
+  .rp { --rp-sh: min(calc(100vw - 32px), 40vh); display: flex; flex-direction: column; gap: 8px; }
+  @supports (height: 1svh) { .rp { --rp-sh: min(calc(100vw - 32px), 40svh); } }
   .rp-main { display: contents; }
-  .rp-stage { order: 1; height: min(calc(100vw - 32px), 62vh); min-height: 300px; }
-  .rp-transport { order: 2; margin-top: 0; }
-  .rp-tower { order: 3; }
+  .rp-stage { order: 1; height: var(--rp-sh); min-height: 200px; position: sticky; top: 0; z-index: 3; box-shadow: 0 0 0 8px var(--bg); }
+  .rp-transport { order: 2; margin-top: 0; padding: 6px 8px; gap: 6px 8px; position: sticky; top: calc(max(var(--rp-sh), 200px) + 8px); z-index: 3; box-shadow: 0 0 0 8px var(--bg); }
+  .rp-icon { width: 42px; height: 42px; }
+  .rp-speeds button { min-width: 38px; height: 40px; }
+  .rp-end { display: none; }
+  .rp-scrub { height: 34px; }
+  .rp-tower { order: 3; overflow: visible; }
+  .rp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 8px 12px; }
+  .rp-lap-now { font-size: calc(28px * var(--display-scale)); }
+  .rp-lap-total { font-size: 14px; }
+  .rp-best { margin-top: 0; font-size: 12px; text-align: right; min-height: 0; }
+  .rp-cols { height: 24px; }
+  .rp-lap { flex: none; white-space: nowrap; }
+  .rp-card { left: 8px; right: 8px; bottom: 8px; padding: 6px 10px; }
+  .rp-card-big { font-size: calc(30px * var(--display-scale)); }
+  .rp-hint { left: 8px; right: 8px; bottom: 8px; padding: 6px 10px; font-size: 12px; }
   .rp-rows { overflow: visible; }
   .rp-clock { min-width: 0; margin-left: auto; }
   .rp-scrub { order: 5; flex-basis: 100%; }
-  .rp-cols, .rp-row { grid-template-columns: 26px 12px minmax(0, 1fr) 56px 56px 56px; padding: 0 10px; }
+  .rp-cols, .rp-row { grid-template-columns: 24px 10px minmax(0, 1fr) 54px 46px 48px; column-gap: 3px; padding: 0 8px; }
   .rp-n { font-size: 14px; gap: 6px; }
   .rp-t { font-size: 12px; }
   .rp-full { display: none; } .rp-short { display: inline; }
