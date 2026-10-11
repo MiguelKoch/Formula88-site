@@ -453,9 +453,12 @@ button.btn { font: inherit; font-weight: 700; cursor: pointer; }
 .rp-speeds button[aria-pressed="true"] { background: var(--fill); color: var(--on-fill); }
 
 @media (max-width: 900px) {
-  .rp-main { display: flex; flex-direction: column; height: auto; }
-  .rp-stage { height: min(calc(100vw - 32px), 62vh); min-height: 300px; }
+  /* no telemóvel: pista, depois os comandos, depois a tabela (os comandos ficam à vista junto da pista) */
+  .rp { display: flex; flex-direction: column; gap: 12px; }
+  .rp-main { display: contents; }
+  .rp-stage { order: 1; height: min(calc(100vw - 32px), 62vh); min-height: 300px; }
   .rp-transport { order: 2; margin-top: 0; }
+  .rp-tower { order: 3; }
   .rp-rows { overflow: visible; }
   .rp-clock { min-width: 0; margin-left: auto; }
   .rp-scrub { order: 5; flex-basis: 100%; }
