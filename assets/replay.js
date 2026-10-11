@@ -4,6 +4,7 @@
 (function (root) {
   'use strict';
 
+  var GAP_EVERY = 2000;                                     // ms entre atualizações dos intervalos
   var STRAIGHT_SPEED = 0.4;   // mais baixo = travam mais nas curvas; mais alto = ritmo mais constante
   var CURV_SIGMA = 14;        // suavização da curvatura (em amostras; a pista tem 720)
   var FOLLOW_ZOOM = 2.6;      // quanto a câmara aproxima ao seguir um piloto
@@ -238,7 +239,7 @@
   P.togglePlay = function () { if (!this.playing && this.t >= this.race.duration) this.seek(0); this.playing = !this.playing; this.syncPlay(); };
   P.seek = function (t) {
     this.t = Math.min(Math.max(t, 0), this.race.duration);
-    this.prevOrder = {}; this.arrows = {}; this.prevDuel = null; this.duelTrend = 0;
+    this.prevOrder = {}; this.arrows = {}; this.prevDuel = null; this.duelTrend = 0; this.gapAt = 0;
     this.lastRecord = this.race.stateAt(this.t).record;       // não anuncia recordes antigos ao saltar
   };
   P.toggleSelect = function (name) {
@@ -246,7 +247,7 @@
     if (i >= 0) this.selected.splice(i, 1);
     else { this.selected.push(name); if (this.selected.length > 2) this.selected.shift(); }
     if (!this.selected.length) this.follow = false;
-    this.prevDuel = null; this.duelTrend = 0;
+    this.prevDuel = null; this.duelTrend = 0; this.cardKey = null;
     this.syncSelection();
   };
   P.syncPlay = function () { var b = this.q('.rp-play'); b.innerHTML = this.playing ? ICON_PAUSE : ICON_PLAY; b.setAttribute('aria-label', this.playing ? 'Pausa' : 'Reproduzir'); };
@@ -284,6 +285,9 @@
 
   P.updateTower = function (now) {
     var self = this, st = this.state, lead = st.order[0], rec = st.record;
+    // os intervalos só são refrescados de GAP_EVERY em GAP_EVERY ms enquanto a corrida corre; parado ou a arrastar, é imediato
+    var fresh = this.gapFresh = !this.playing || this.scrubbing || !this.gapAt || now - this.gapAt >= GAP_EVERY;
+    if (fresh) this.gapAt = now;
     this.q('.rp-lap-now').textContent = 'Volta ' + Math.min(lead.finished ? lead.d.n : lead.done + 1, this.race.totalLaps);
     this.q('.rp-state').textContent = st.complete ? 'TERMINADA' : '';
     var best = rec ? 'Volta mais rápida: <b>' + fmtLap(rec.time) + '</b> · ' + esc(rec.driver.name) + ' (V' + rec.lap + ')' : 'Volta mais rápida: –';
@@ -300,8 +304,11 @@
       self.set(row, 'a', row.a, show ? (arrow.up ? '▲' : '▼') : '', 'rp-a' + (show ? (arrow.up ? ' rp-up' : ' rp-down') : ''));
       var isFl = rec && s.last != null && Math.abs(s.last - rec.time) < 1e-6, isPb = s.last != null && Math.abs(s.last - s.pb) < 1e-6;
       self.set(row, 'last', row.last, fmtLap(s.last), 'rp-t' + (isFl ? ' rp-fl' : isPb ? ' rp-pb' : ''));
-      self.set(row, 'int', row.int, s.order === 1 ? '' : fmtGap(s.int, s.intLaps));
-      self.set(row, 'gap', row.gap, s.order === 1 ? 'Líder' : fmtGap(s.gap, s.gapLaps));
+      if (fresh || row.cache.gapOrder !== s.order) {          // quem muda de posição acerta logo os seus números
+        row.cache.gapOrder = s.order;
+        self.set(row, 'int', row.int, s.order === 1 ? '' : fmtGap(s.int, s.intLaps));
+        self.set(row, 'gap', row.gap, s.order === 1 ? 'Líder' : fmtGap(s.gap, s.gapLaps));
+      }
     });
     var toast = this.q('.rp-toast');
     if (rec !== this.lastRecord) {
@@ -317,6 +324,9 @@
   P.updateCard = function () {
     if (!this.selected.length) return;
     var st = this.state, S = this.selected.map(function (n) { return st.byName[n]; }), html;
+    var key = S.map(function (s) { return s.d.name + s.order + '.' + s.done; }).join('|');
+    if (!this.gapFresh && key === this.cardKey) return;
+    this.cardKey = key;
     function nameEl(s) { return '<div class="rp-card-name"><span class="rp-dot" style="background:' + s.d.color + '"></span><span>' + s.order + 'º ' + esc(s.d.name) + '</span></div>'; }
     if (S.length === 2) {
       var pair = S[0].dist >= S[1].dist ? S : [S[1], S[0]], ahead = pair[0], behind = pair[1];
