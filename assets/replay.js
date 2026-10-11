@@ -78,7 +78,8 @@
     this.drivers = data.drivers.map(function (d, i) {
       var laps = [];
       for (var j = 0; j < d.laps.length; j++) { var v = +d.laps[j]; if (!isFinite(v) || v <= 0) break; laps.push(v); }
-      var cum = [0];
+      var s0 = +d.start; if (!isFinite(s0) || s0 < 0) s0 = 0;     // "volta 0": quando cruzou a meta pela primeira vez
+      var cum = [s0];
       laps.forEach(function (t) { cum.push(cum[cum.length - 1] + t); });
       return { name: d.name, color: COLORS[i % COLORS.length], laps: laps, cum: cum, n: laps.length, total: cum[cum.length - 1] };
     }).filter(function (d) { return d.n > 0; });
@@ -93,10 +94,11 @@
   }
   Race.prototype.distAt = function (d, t) {
     if (t >= d.total) return d.n;
+    if (t < d.cum[0]) return (t - d.cum[0]) / d.laps[0];          // ainda a caminho da meta, na fila de partida
     var L = 0; while (L < d.n && d.cum[L + 1] <= t) L++;
     return L + (t - d.cum[L]) / d.laps[L];
   };
-  Race.prototype.timeAt = function (d, dist) { var L = Math.floor(dist); return L >= d.n ? d.total : d.cum[L] + (dist - L) * d.laps[L]; };
+  Race.prototype.timeAt = function (d, dist) { if (dist < 0) return d.cum[0] + dist * d.laps[0]; var L = Math.floor(dist); return L >= d.n ? d.total : d.cum[L] + (dist - L) * d.laps[L]; };
   Race.prototype.pointAt = function (dist) {
     var T = this.cdf, N = T.length - 1, p = dist - Math.floor(dist), lo = 0, hi = N;
     while (lo < hi) { var mid = (lo + hi) >> 1; if (T[mid] <= p) lo = mid + 1; else hi = mid; }
@@ -108,7 +110,7 @@
   Race.prototype.stateAt = function (t) {
     var self = this;
     var st = this.drivers.map(function (d) {
-      var dist = self.distAt(d, t), finished = t >= d.total, done = finished ? d.n : Math.floor(dist);
+      var dist = self.distAt(d, t), finished = t >= d.total, done = finished ? d.n : Math.max(0, Math.floor(dist));
       return {
         d: d, dist: dist, finished: finished, done: done, pos: self.pointAt(dist),
         last: done > 0 ? d.laps[done - 1] : null,

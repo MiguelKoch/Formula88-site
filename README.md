@@ -59,6 +59,10 @@ The replay on a race page is rebuilt from lap times, so it needs every driver's 
      first point is the start/finish line. About 30 to 60 points is enough.
    - Add `"yDown": true` when the outline was traced over an image (y grows downwards); without it y is
      taken to grow upwards.
+   - `start` (optional, seconds) is the driver's "lap 0": when the kart first crossed the line after the
+     rolling start. `python3 tools/lap0.py sheet.csv --replay data/<season>/replays/<race>.json` works it
+     out from the timing sheet (lap times plus the final gap column) and writes it in; see the top of
+     that script for the CSV format.
    - `laps` are in seconds, in order. A driver who stopped early simply has fewer laps.
    - Drivers here are matched by nothing: guests who are not in the league can be included.
 
