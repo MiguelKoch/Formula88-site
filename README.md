@@ -75,6 +75,9 @@ Optional. Put the files in `assets/img/` and point to them from `data/<season>/s
 - a race: `"image": "assets/img/pistas/viana.jpg"` (shown across the top of its card in Provas);
 - a driver: `"photo": "assets/img/pilotos/pedro-gomes.jpg"` (shown as a circle on the card in Pilotos).
 
+A race can also have `"sheet": "assets/img/folhas/2027-viana.jpg"`: a photo of the official timing
+sheet, shown at the bottom of the race page.
+
 Without those fields the cards look as before. Keep the files small (about 600 px wide is plenty).
 
 ### Adding a driver, a team or a race to the calendar

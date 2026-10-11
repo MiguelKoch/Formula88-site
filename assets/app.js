@@ -245,6 +245,7 @@
     });
     h += '</tbody></table></div>';
     if (r.note) h += '<p class="hint">' + esc(r.note) + '</p>';
+    if (r.sheet) h += '<h2>Folha de tempos</h2><a class="sheet" href="' + esc(r.sheet) + '" target="_blank" rel="noopener"><img src="' + esc(r.sheet) + '" alt="Folha de tempos oficial da prova, com os tempos de cada volta" loading="lazy"></a><p class="hint">Toca na folha para a abrir em tamanho grande.</p>';
     return h;
   }
 

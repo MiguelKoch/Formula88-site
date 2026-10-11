@@ -176,6 +176,8 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 /* fotografias: pista no topo do cartão da prova, piloto em círculo no cartão do piloto */
 .card.has-img { overflow: hidden; }
 .card-img { display: block; width: calc(100% + 40px); max-width: none; height: 120px; margin: -18px -20px 14px; object-fit: cover; border-bottom: 1px solid var(--line); background: var(--line); }
+.sheet { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+.sheet img { display: block; width: 100%; height: auto; }
 .avatar { flex: none; width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line); background: var(--line); }
 .rowlink { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 700; }
 .grow { flex: 1; min-width: 0; }
