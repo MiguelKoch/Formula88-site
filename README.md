@@ -31,7 +31,8 @@ data/
    ```
 
    - `pos` is the final classification, after any penalties.
-   - `grid`, `bestLap` and `penalty` (seconds) are optional.
+   - `grid`, `bestLap`, `penalty` (seconds) and `gap` (text as on the sheet, e.g. `"+17.241"` or
+     `"+1 volta"`) are optional.
    - `status` is optional: `"DNF"` or `"DSQ"`.
    - Drivers who did not race are simply left out (they count as DNS).
 

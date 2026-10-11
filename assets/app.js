@@ -230,8 +230,9 @@
     var hasGrid = rows.some(function (e) { return e.grid != null; });
     var hasLap = rows.some(function (e) { return e.bestLap; });
     var hasPen = rows.some(function (e) { return e.penalty; });
-    h += '<div class="h2-row"><h2>Classificação da prova</h2><button type="button" class="btn ghost small" data-export="race:' + esc(r.id) + '">Exportar .xlsx</button></div><div class="table-wrap"><table class="grid"><thead><tr><th class="c-pos" scope="col">Pos</th><th class="c-name" scope="col">Piloto</th>' +
-      (hasGrid ? '<th scope="col">Grelha</th><th scope="col">Ganhas</th>' : '') + (hasLap ? '<th class="c-num" scope="col">Melhor volta</th>' : '') +
+    var hasGap = rows.some(function (e) { return e.gap; });
+    h += '<div class="h2-row"><h2>Classificação da prova</h2><button type="button" class="btn ghost small" data-export="race:' + esc(r.id) + '">Exportar .xlsx</button></div><div class="table-wrap"><table class="grid race"><thead><tr><th class="c-pos" scope="col">Pos</th><th class="c-name" scope="col">Piloto</th>' +
+      (hasGrid ? '<th scope="col">Grelha</th><th scope="col">Ganhas</th>' : '') + (hasGap ? '<th class="c-num" scope="col">Diferença</th>' : '') + (hasLap ? '<th class="c-num" scope="col">Melhor volta</th>' : '') +
       (hasPen ? '<th class="c-num" scope="col">Penalização</th>' : '') + '<th class="c-num c-geral" scope="col">Pontos</th></tr></thead><tbody>';
     rows.forEach(function (e) {
       var d = c.driverById[e.driver];
@@ -239,13 +240,14 @@
       var g = e.grid != null && e.pos ? e.grid - e.pos : null;
       h += '<tr><td class="c-pos' + (e.pos <= 3 && !e.status ? ' top' : '') + '">' + (e.status === 'DSQ' ? 'DSQ' : (e.pos || '—')) + '</td><th class="c-name" scope="row"><a href="' + link(sid, ['piloto', e.driver]) + '">' + esc(d ? d.name : e.driver) + '</a>' + (e.status === 'DNF' ? ' <span class="tag">DNF</span>' : '') + '</th>' +
         (hasGrid ? '<td class="muted">' + (e.grid != null ? e.grid + 'º' : '—') + '</td><td class="' + (g > 0 ? 'up' : (g < 0 ? 'down' : 'muted')) + '">' + (g == null ? '—' : (g > 0 ? '+' + g : (g < 0 ? '−' + (-g) : '='))) + '</td>' : '') +
+        (hasGap ? '<td class="c-num muted">' + esc(e.gap || (e.pos === 1 ? '–' : '—')) + '</td>' : '') +
         (hasLap ? '<td class="c-num' + (r.fastestLap === e.driver ? ' fl' : '') + '">' + esc(e.bestLap || '—') + '</td>' : '') +
         (hasPen ? '<td class="c-num muted">' + (e.penalty ? '+' + e.penalty + ' s' : '—') + '</td>' : '') +
         '<td class="c-num c-geral">' + (x ? x.pts : '—') + '</td></tr>';
     });
     h += '</tbody></table></div>';
     if (r.note) h += '<p class="hint">' + esc(r.note) + '</p>';
-    if (r.sheet) h += '<h2>Folha de tempos</h2><a class="sheet" href="' + esc(r.sheet) + '" target="_blank" rel="noopener"><img src="' + esc(r.sheet) + '" alt="Folha de tempos oficial da prova, com os tempos de cada volta" loading="lazy"></a><p class="hint">Toca na folha para a abrir em tamanho grande.</p>';
+    if (r.sheet) h += '<h2>Folha de tempos</h2><a class="sheet" href="' + esc(r.sheet) + '" target="_blank" rel="noopener"><img src="' + esc(r.sheet) + '" alt="Folha de tempos oficial da prova, com os tempos de cada volta" loading="lazy"></a><p class="hint">Toca na folha para a ver em grande.</p>';
     return h;
   }
 
@@ -376,13 +378,13 @@
 
   // ---------- exportação para Excel ----------
   function raceSheet(D, r) {
-    var c = D.calc, rows = [['Pos', 'Piloto', 'Equipa', 'Grelha', 'Melhor volta', 'Penalização (s)', 'Estado', 'Pontos']];
+    var c = D.calc, rows = [['Pos', 'Piloto', 'Equipa', 'Grelha', 'Diferença', 'Melhor volta', 'Penalização (s)', 'Estado', 'Pontos']];
     r.results.slice().sort(function (a, b) { return (a.pos || 999) - (b.pos || 999); }).forEach(function (e) {
       var d = c.driverById[e.driver], x = d ? d.races.filter(function (q) { return q.race === r.id; })[0] : null;
-      rows.push([e.pos || '', d ? d.name : e.driver, d && d.team ? d.team.name : '', e.grid == null ? '' : e.grid, e.bestLap || '',
+      rows.push([e.pos || '', d ? d.name : e.driver, d && d.team ? d.team.name : '', e.grid == null ? '' : e.grid, e.gap || '', e.bestLap || '',
         e.penalty || '', e.status || (r.fastestLap === e.driver ? 'Volta mais rápida' : ''), x ? x.pts : '']);
     });
-    return { name: r.name, rows: rows, widths: [6, 24, 28, 8, 13, 15, 18, 8] };
+    return { name: r.name, rows: rows, widths: [6, 24, 28, 8, 12, 13, 15, 18, 8] };
   }
   function seasonSheets(D) {
     var c = D.calc, held = c.held;

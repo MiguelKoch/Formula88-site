@@ -10,67 +10,80 @@
     {
       "driver": "bruno-silva",
       "pos": 2,
-      "bestLap": "1:00.323"
+      "bestLap": "1:00.323",
+      "gap": "+17.241"
     },
     {
       "driver": "david-santos",
       "pos": 3,
-      "bestLap": "0:59.764"
+      "bestLap": "0:59.764",
+      "gap": "+17.511"
     },
     {
       "driver": "miguel-carmo",
       "pos": 4,
-      "bestLap": "1:00.415"
+      "bestLap": "1:00.415",
+      "gap": "+23.100"
     },
     {
       "driver": "fabio-oliveira",
       "pos": 5,
-      "bestLap": "1:00.608"
+      "bestLap": "1:00.608",
+      "gap": "+23.817"
     },
     {
       "driver": "sergio-costa",
       "pos": 6,
-      "bestLap": "1:00.455"
+      "bestLap": "1:00.455",
+      "gap": "+28.274"
     },
     {
       "driver": "hugo-oliveira",
       "pos": 7,
-      "bestLap": "1:00.585"
+      "bestLap": "1:00.585",
+      "gap": "+29.149"
     },
     {
       "driver": "sergio-machado",
       "pos": 8,
-      "bestLap": "1:00.552"
+      "bestLap": "1:00.552",
+      "gap": "+30.015"
     },
     {
       "driver": "tiago-rodrigues",
       "pos": 9,
-      "bestLap": "1:00.966"
+      "bestLap": "1:00.966",
+      "gap": "+45.108"
     },
     {
       "driver": "daniel-marques",
       "pos": 10,
-      "bestLap": "1:02.427"
+      "bestLap": "1:02.427",
+      "gap": "+50.429"
     },
     {
       "driver": "ze",
       "pos": 11,
-      "bestLap": "1:02.590"
+      "bestLap": "1:02.590",
+      "gap": "+1:16.310"
     },
     {
       "driver": "hugo",
       "pos": 12,
-      "bestLap": "1:03.505"
+      "bestLap": "1:03.505",
+      "gap": "+1 volta"
     },
     {
       "driver": "manuel",
       "pos": 13,
-      "bestLap": "1:05.042"
+      "bestLap": "1:05.042",
+      "gap": "+1 volta"
     },
     {
       "driver": "rui-moura",
       "pos": 14,
-      "bestLap": "1:04.681"
+      "bestLap": "1:04.681",
+      "gap": "+1 volta"
     }
   ]
 }
