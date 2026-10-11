@@ -473,8 +473,14 @@ button.btn { font: inherit; font-weight: 700; cursor: pointer; }
   .rp-best { margin-top: 0; font-size: 12px; text-align: right; min-height: 0; }
   .rp-cols { height: 24px; }
   .rp-lap { flex: none; white-space: nowrap; }
-  .rp-card { left: 8px; right: 8px; bottom: 8px; padding: 6px 10px; }
-  .rp-card-big { font-size: calc(30px * var(--display-scale)); }
+  .rp-card { left: 8px; right: 8px; bottom: 8px; padding: 5px 10px; }
+  .rp-card-k { display: none; }
+  .rp-card-name { font-size: 13px; line-height: 1.35; }
+  .rp-card-gap { display: flex; align-items: baseline; gap: 6px; padding-right: 30px; }
+  .rp-card-big { font-size: calc(24px * var(--display-scale)); }
+  .rp-card-trend { font-size: 11px; min-height: 0; white-space: nowrap; }
+  .rp-card-stats { margin-top: 2px; gap: 12px; font-size: 12px; }
+  .rp-chip { min-height: 36px; padding: 0 12px; font-size: 13px; }
   .rp-hint { left: 8px; right: 8px; bottom: 8px; padding: 6px 10px; font-size: 12px; }
   .rp-rows { overflow: visible; }
   .rp-clock { min-width: 0; margin-left: auto; }

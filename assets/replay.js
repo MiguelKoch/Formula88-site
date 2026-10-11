@@ -75,6 +75,14 @@
   function Race(data) {
     this.track = buildTrack(data.track.map(function (p) { return { x: +p[0], y: +p[1] }; }), data.yDown === true);
     this.cdf = buildTimeCDF(this.track);
+    // menor distância entre dois troços diferentes da pista (para a faixa desenhada nunca se sobrepor a si própria)
+    var T = this.track, N = T.length, far = Math.round(N * 0.07), sep = Infinity;
+    for (var a = 0; a < N; a += 2) for (var c = a + far; c < N; c += 2) {
+      if (N - (c - a) < far) break;
+      var dx = T[a].x - T[c].x, dy = T[a].y - T[c].y, dd = dx * dx + dy * dy;
+      if (dd < sep) sep = dd;
+    }
+    this.minSep = isFinite(sep) ? Math.sqrt(sep) : 1000;
     this.drivers = data.drivers.map(function (d, i) {
       var laps = [];
       for (var j = 0; j < d.laps.length; j++) { var v = +d.laps[j]; if (!isFinite(v) || v <= 0) break; laps.push(v); }
@@ -143,7 +151,7 @@
       '<div class="rp-stage"><canvas></canvas>' +
         '<div class="rp-tools"><button type="button" class="rp-chip rp-follow" aria-pressed="false" hidden>Seguir</button><button type="button" class="rp-chip rp-fit" hidden>Ver pista toda</button></div>' +
         '<div class="rp-toast" role="status"></div>' +
-        '<p class="rp-hint">Toca num piloto para o destacar, ou em dois para ver o duelo.</p>' +
+        '<p class="rp-hint"><span class="rp-full">Toca num piloto para o destacar, ou em dois para ver o duelo.</span><span class="rp-short">Toca num piloto, ou em dois para o duelo.</span></p>' +
         '<div class="rp-card" hidden><button type="button" class="rp-x" aria-label="Limpar seleção">×</button><div class="rp-card-body"></div></div>' +
       '</div>' +
       '<div class="rp-tower">' +
@@ -375,7 +383,11 @@
     return this.theme;
   };
   P.fitView = function () {
-    var b = this.race.box, padX = 36, padTop = 68, padBottom = this.selected.length ? 120 : (this.w < 500 ? 76 : 52);
+    var b = this.race.box, small = this.w < 500, sel = this.selected.length > 0;
+    // em ecrãs pequenos a pista usa quase toda a área; só se guarda espaço para o que está mesmo por cima
+    var padX = small ? 20 : 36, padTop = small ? (sel ? 44 : 20) : 68;
+    var card = sel ? this.q('.rp-card') : this.q('.rp-hint'), ch = card && !card.hidden ? card.offsetHeight : 0;
+    var padBottom = small ? ch + 26 : (sel ? 120 : 52);
     var z = Math.min((this.w - 2 * padX) / (b.x1 - b.x0), (this.h - padTop - padBottom) / (b.y1 - b.y0));
     return { x: (b.x0 + b.x1) / 2, y: (b.y0 + b.y1) / 2 - (padTop - padBottom) / 2 / z, z: z };
   };
@@ -404,7 +416,7 @@
     var T = this.race.track, path = new Path2D();
     T.forEach(function (p, i) { var s = self.toScreen(p); if (i) path.lineTo(s.x, s.y); else path.moveTo(s.x, s.y); });
     path.closePath();
-    var width = Math.max(16, 22 * this.cam.z);
+    var width = Math.max(5, Math.min(Math.max(16, 22 * this.cam.z), this.race.minSep * this.cam.z * 0.72));
     ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     ctx.strokeStyle = th.track; ctx.lineWidth = width; ctx.stroke(path);
     var a = this.toScreen(T[0]), b = this.toScreen(T[1]), m = Math.hypot(b.x - a.x, b.y - a.y) || 1;
