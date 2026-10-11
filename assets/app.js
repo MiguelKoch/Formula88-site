@@ -99,7 +99,8 @@
     h += '<section class="hero"><p class="eyebrow accent">' + esc(D.season.name) + ' · ' + esc(status) + '</p>' +
       '<h1>A melhor liga de karts acima do Mondego</h1>' +
       '<p class="actions"><a class="btn" href="' + link(sid, ['classificacao']) + '">Ver classificação</a>' +
-      '<a class="btn ghost" href="' + link(sid, ['regulamento']) + '">Ler o regulamento</a></p></section>';
+      '<a class="btn ghost" href="' + link(sid, ['regulamento']) + '">Ler o regulamento</a>' +
+      '<button type="button" class="btn ghost" data-install hidden>Instalar app</button></p></section>';
 
     if (held.length) {
       h += '<div class="cards">' + podiumCards(D, sid) + '</div>';
@@ -361,6 +362,7 @@
       return fn ? fn(D, sid, arg) : notFound(sid);
     }).then(function (html) {
       app.innerHTML = html;
+      syncInstall();
       var h1 = app.querySelector('h1');
       document.title = (h1 && page ? h1.textContent + ' · ' : '') + 'Fórmula 88';
       window.scrollTo(0, 0);
@@ -471,6 +473,43 @@
     if (e.key === 'Escape' && liveryPop.open) { liveryPop.open = false; liveryPop.querySelector('summary').focus(); }
   });
 
+  // ---------- instalar como app: botão discreto, só quando faz sentido ----------
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroidOther = /Android/.test(ua) && /Firefox/.test(ua);            // não deixa o site abrir a instalação
+  var installDone = false;
+  function installed() { return installDone || window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }
+  function syncInstall() {
+    var st = window.F88Install || {}, show = !installed() && (!!st.prompt || isIOS || isAndroidOther);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-install]'), function (b) { b.hidden = !show; });
+  }
+  function installHelp() {
+    var d = document.getElementById('install-help');
+    if (!d) {
+      d = document.createElement('dialog'); d.id = 'install-help'; d.className = 'help';
+      d.innerHTML = '<h2>Instalar a Fórmula 88</h2>' + (isIOS
+        ? '<ol><li>Toca em <strong>Partilhar</strong> (o quadrado com a seta para cima), na barra do browser.</li><li>Escolhe <strong>Adicionar ao ecrã principal</strong>.</li><li>Confirma em <strong>Adicionar</strong>.</li></ol>'
+        : '<ol><li>Abre o <strong>menu do browser</strong> (os três pontos).</li><li>Escolhe <strong>Instalar</strong> ou <strong>Adicionar ao ecrã principal</strong>.</li></ol>') +
+        '<p class="muted">Fica com um ícone no telemóvel e abre em ecrã inteiro. Continua a ser o site: atualiza-se sozinho.</p>' +
+        '<form method="dialog"><button class="btn">Fechar</button></form>';
+      document.body.appendChild(d);
+    }
+    if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-install]');
+    if (!b) return;
+    var st = window.F88Install || {};
+    if (st.prompt) {
+      var p = st.prompt; st.prompt = null;
+      p.prompt();
+      (p.userChoice || Promise.resolve({})).then(function (c) { if (c && c.outcome === 'accepted') installDone = true; syncInstall(); });
+    } else installHelp();
+  });
+  window.addEventListener('f88-install', syncInstall);
+  window.addEventListener('appinstalled', function () { installDone = true; syncInstall(); });
+
+  syncInstall();
   getJSON('data/seasons.json').then(function (c) {
     cfg = c;
     window.addEventListener('hashchange', route);

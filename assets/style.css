@@ -270,6 +270,14 @@ main { padding-top: 8px; padding-bottom: 56px; min-height: 60vh; outline: none; 
 
 .site-foot { padding-top: 24px; padding-bottom: 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 .site-foot p { margin: 0 0 6px; }
+[hidden] { display: none !important; }
+.link-btn { font: inherit; color: var(--text); background: none; border: 0; padding: 10px 0; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+dialog.help { width: min(420px, calc(100vw - 32px)); padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--text); }
+dialog.help::backdrop { background: rgba(0, 0, 0, 0.6); }
+dialog.help h2 { margin: 0 0 12px; }
+dialog.help ol { margin: 0 0 12px; padding-left: 20px; }
+dialog.help li { margin-bottom: 8px; }
+dialog.help form { margin-top: 16px; }
 
 /* ---------- traços próprios de cada pintura ---------- */
 /* Posições todas na cor de destaque */

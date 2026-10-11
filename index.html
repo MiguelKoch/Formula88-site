@@ -49,11 +49,15 @@
 
 <footer class="wrap site-foot">
   <p>Fórmula 88 · A melhor liga de karts acima do Mondego</p>
+  <p><button type="button" class="link-btn" data-install hidden>Instalar como app</button></p>
 </footer>
 
 <script>
 /* Esta página nunca muda: a versão vem de version.json, lido sempre de fresco, e é com ela que se pedem
    a folha de estilos e os scripts. Assim, quando o site é atualizado, basta abrir ou voltar à página. */
+/* O Android avisa cedo que o site pode ser instalado; guarda-se o aviso para o botão "Instalar". */
+window.F88Install = { prompt: null };
+window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); window.F88Install.prompt = e; window.dispatchEvent(new Event('f88-install')); });
 (function () {
   var files = ['assets/scoring.js', 'assets/xlsx.js', 'assets/replay.js', 'assets/app.js'], current = null, checked = Date.now();
   function show() { document.documentElement.classList.remove('f88-boot'); }
