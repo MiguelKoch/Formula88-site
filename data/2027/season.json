@@ -22,7 +22,73 @@
     "fastestLap": 1
   },
   "dropWorstFromRace": 3,
-  "drivers": [],
+  "drivers": [
+    {
+      "id": "goncalo-portugal",
+      "name": "Gonçalo Portugal"
+    },
+    {
+      "id": "bruno-silva",
+      "name": "Bruno Silva"
+    },
+    {
+      "id": "david-santos",
+      "name": "David Santos"
+    },
+    {
+      "id": "miguel-carmo",
+      "name": "Miguel Carmo"
+    },
+    {
+      "id": "fabio-oliveira",
+      "name": "Fábio Oliveira"
+    },
+    {
+      "id": "sergio-costa",
+      "name": "Sérgio Costa"
+    },
+    {
+      "id": "hugo-oliveira",
+      "name": "Hugo Oliveira"
+    },
+    {
+      "id": "sergio-machado",
+      "name": "Sérgio Machado"
+    },
+    {
+      "id": "tiago-rodrigues",
+      "name": "Tiago Rodrigues"
+    },
+    {
+      "id": "daniel-marques",
+      "name": "Daniel Marques"
+    },
+    {
+      "id": "ze",
+      "name": "Zé"
+    },
+    {
+      "id": "hugo",
+      "name": "Hugo"
+    },
+    {
+      "id": "manuel",
+      "name": "Manuel"
+    },
+    {
+      "id": "rui-moura",
+      "name": "Rui Moura"
+    }
+  ],
   "teams": [],
-  "races": []
+  "races": [
+    {
+      "id": "viana",
+      "name": "Viana",
+      "track": "Kartódromo de Viana",
+      "date": "2026-10-11",
+      "duration": "15 min",
+      "hasResults": true
+    }
+  ]
 }

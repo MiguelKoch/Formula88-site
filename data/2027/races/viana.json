@@ -1,0 +1,76 @@
+{
+  "race": "viana",
+  "fastestLap": "goncalo-portugal",
+  "results": [
+    {
+      "driver": "goncalo-portugal",
+      "pos": 1,
+      "bestLap": "0:59.135"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 2,
+      "bestLap": "1:00.323"
+    },
+    {
+      "driver": "david-santos",
+      "pos": 3,
+      "bestLap": "0:59.764"
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 4,
+      "bestLap": "1:00.415"
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 5,
+      "bestLap": "1:00.608"
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 6,
+      "bestLap": "1:00.455"
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 7,
+      "bestLap": "1:00.585"
+    },
+    {
+      "driver": "sergio-machado",
+      "pos": 8,
+      "bestLap": "1:00.552"
+    },
+    {
+      "driver": "tiago-rodrigues",
+      "pos": 9,
+      "bestLap": "1:00.966"
+    },
+    {
+      "driver": "daniel-marques",
+      "pos": 10,
+      "bestLap": "1:02.427"
+    },
+    {
+      "driver": "ze",
+      "pos": 11,
+      "bestLap": "1:02.590"
+    },
+    {
+      "driver": "hugo",
+      "pos": 12,
+      "bestLap": "1:03.505"
+    },
+    {
+      "driver": "manuel",
+      "pos": 13,
+      "bestLap": "1:05.042"
+    },
+    {
+      "driver": "rui-moura",
+      "pos": 14,
+      "bestLap": "1:04.681"
+    }
+  ]
+}
