@@ -116,10 +116,11 @@ visitor's browser from the same data (`assets/xlsx.js`); nothing needs to be mai
 
 ## After changing the design or the code
 
-`index.html` loads the stylesheet and the scripts in `assets/` with a version
-tag (`?v=...`). Change that tag (on every line that has it) whenever one of those files changes, so visitors get the new
-version on a normal page load instead of a cached copy. Data files in `data/` do not need this:
-the site re-checks them on every visit.
+Change the value in `version.json` (any new text will do, e.g. today's date plus a letter) whenever a
+file in `assets/` changes. `index.html` reads that file fresh on every visit and uses the value to
+request the stylesheet and scripts, so visitors get the new version on a normal page load, and a
+page left open reloads itself when they come back to it. `index.html` itself should rarely need to
+change. Data files in `data/` do not need a version bump: the site re-checks them on every visit.
 
 ## Running it locally
 

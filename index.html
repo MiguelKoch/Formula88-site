@@ -12,9 +12,10 @@
     var l = localStorage.getItem('f88-pintura');
     if (l) document.documentElement.setAttribute('data-livery', l);
   } catch (e) {}
+  document.documentElement.className = 'f88-boot';
 })();
 </script>
-<link rel="stylesheet" href="assets/style.css?v=20261011i">
+<style>.f88-boot body { visibility: hidden; }</style>
 </head>
 <body>
 <a class="skip" href="#app">Saltar para o conteúdo</a>
@@ -44,9 +45,31 @@
   <p>Fórmula 88 · A melhor liga de karts acima do Mondego</p>
 </footer>
 
-<script src="assets/scoring.js?v=20261011i"></script>
-<script src="assets/xlsx.js?v=20261011i"></script>
-<script src="assets/replay.js?v=20261011i"></script>
-<script src="assets/app.js?v=20261011i"></script>
+<script>
+/* Esta página nunca muda: a versão vem de version.json, lido sempre de fresco, e é com ela que se pedem
+   a folha de estilos e os scripts. Assim, quando o site é atualizado, basta abrir ou voltar à página. */
+(function () {
+  var files = ['assets/scoring.js', 'assets/xlsx.js', 'assets/replay.js', 'assets/app.js'], current = null, checked = Date.now();
+  function show() { document.documentElement.classList.remove('f88-boot'); }
+  function version() { return fetch('version.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { return String(j.v); }); }
+  function start(v) {
+    current = v;
+    var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'assets/style.css?v=' + v; l.onload = l.onerror = show;
+    document.head.appendChild(l); setTimeout(show, 3000);
+    (function next(i) {
+      if (i >= files.length) return;
+      var s = document.createElement('script'); s.src = files[i] + '?v=' + v; s.onload = function () { next(i + 1); };
+      document.body.appendChild(s);
+    })(0);
+  }
+  version().then(start, function () { start(String(Date.now())); });
+  // ao voltar ao separador, se entretanto saiu uma versão nova, a página recarrega sozinha
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden || !current || Date.now() - checked < 60000) return;
+    checked = Date.now();
+    version().then(function (v) { if (v !== current) location.reload(); }, function () {});
+  });
+})();
+</script>
 </body>
 </html>
