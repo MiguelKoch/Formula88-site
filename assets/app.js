@@ -98,7 +98,6 @@
     var status = held.length ? plural(held.length, 'prova disputada', 'provas disputadas') + (total ? ' de ' + total : '') : 'A temporada ainda não arrancou';
     h += '<section class="hero"><p class="eyebrow accent">' + esc(D.season.name) + ' · ' + esc(status) + '</p>' +
       '<h1>A melhor liga de karts acima do Mondego</h1>' +
-      '<p class="lead">Competição saudável, camaradagem e respeito dentro e fora de pista.</p>' +
       '<p class="actions"><a class="btn" href="' + link(sid, ['classificacao']) + '">Ver classificação</a>' +
       '<a class="btn ghost" href="' + link(sid, ['regulamento']) + '">Ler o regulamento</a></p></section>';
 
