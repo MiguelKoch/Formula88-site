@@ -18,11 +18,11 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
   // ---------- pista: spline Catmull-Rom centrípeta fechada, reamostrada a passo constante ----------
-  function buildTrack(raw) {
+  function buildTrack(raw, yDown) {       // yDown: y cresce para baixo, como num desenho feito sobre uma imagem
     var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
     raw.forEach(function (p) { minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y); });
     var s = 1000 / ((maxX - minX) || 1);
-    var scaled = raw.map(function (p) { return { x: (p.x - minX) * s, y: (maxY - p.y) * s }; });
+    var scaled = raw.map(function (p) { return { x: (p.x - minX) * s, y: (yDown ? p.y - minY : maxY - p.y) * s }; });
     var pts = [];
     scaled.forEach(function (p) { var q = pts[pts.length - 1]; if (!q || Math.hypot(p.x - q.x, p.y - q.y) > 0.5) pts.push(p); });
     if (pts.length > 2 && Math.hypot(pts[0].x - pts[pts.length - 1].x, pts[0].y - pts[pts.length - 1].y) < 0.5) pts.pop();
@@ -73,7 +73,7 @@
 
   // ---------- modelo da corrida ----------
   function Race(data) {
-    this.track = buildTrack(data.track.map(function (p) { return { x: +p[0], y: +p[1] }; }));
+    this.track = buildTrack(data.track.map(function (p) { return { x: +p[0], y: +p[1] }; }), data.yDown === true);
     this.cdf = buildTimeCDF(this.track);
     this.drivers = data.drivers.map(function (d, i) {
       var laps = [];

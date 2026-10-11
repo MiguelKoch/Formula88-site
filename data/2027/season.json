@@ -88,7 +88,8 @@
       "track": "Kartódromo de Viana",
       "date": "2026-10-11",
       "duration": "15 min",
-      "hasResults": true
+      "hasResults": true,
+      "hasReplay": true
     }
   ]
 }

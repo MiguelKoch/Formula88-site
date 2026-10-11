@@ -57,6 +57,8 @@ The replay on a race page is rebuilt from lap times, so it needs every driver's 
 
    - `track` is the outline of the circuit as a closed loop of control points (any scale); the
      first point is the start/finish line. About 30 to 60 points is enough.
+   - Add `"yDown": true` when the outline was traced over an image (y grows downwards); without it y is
+     taken to grow upwards.
    - `laps` are in seconds, in order. A driver who stopped early simply has fewer laps.
    - Drivers here are matched by nothing: guests who are not in the league can be included.
 
