@@ -122,6 +122,11 @@ request the stylesheet and scripts, so visitors get the new version on a normal 
 page left open reloads itself when they come back to it. `index.html` itself should rarely need to
 change. Data files in `data/` do not need a version bump: the site re-checks them on every visit.
 
+## Installing it as an app
+
+The site can be added to a phone's home screen (browser menu, "Install" or "Add to Home screen").
+The name, colours and icon come from `manifest.webmanifest` and the images in `assets/icons/`.
+
 ## Running it locally
 
 ```
