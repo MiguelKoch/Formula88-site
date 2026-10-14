@@ -122,7 +122,7 @@ h2 { margin: 40px 0 12px; font-size: calc(34px * var(--display-scale)); line-hei
 .nav a { padding: 12px 4px; text-decoration: none; font-weight: 700; border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
 .nav a[aria-current="page"] { color: var(--head-accent); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 3px; }
 .tools { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 14px; align-items: flex-start; }
-.tools select, .livery-pop summary {
+.tools select, .livery-pop summary, .lang-btn {
   font: inherit; font-weight: 700; min-height: 44px; padding: 0 12px; border-radius: 6px; cursor: pointer;
   background: var(--head-bg); color: var(--head-text); border: 2px solid currentColor;
 }
@@ -136,7 +136,7 @@ h2 { margin: 40px 0 12px; font-size: calc(34px * var(--display-scale)); line-hei
 .sw { width: 44px; height: 24px; border-radius: 4px; border: 1px solid #8a8a8a; flex: none; }
 .stripes { height: var(--stripes-h); background: var(--stripes); }
 
-@media (min-width: 1120px) {
+@media (min-width: 1180px) {
   .menu-btn { display: none; }
   .menu { display: flex; width: auto; align-items: center; gap: 16px; padding-bottom: 0; }
   .nav { flex-direction: row; gap: 2px; }

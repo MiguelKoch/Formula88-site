@@ -33,6 +33,7 @@
       <nav id="nav" class="nav" aria-label="Principal"></nav>
       <div class="tools">
         <select id="season-select" aria-label="Temporada"></select>
+        <button type="button" class="lang-btn" id="lang-btn" lang="en" aria-label="Switch to English">EN</button>
         <details class="livery-pop" id="livery-pop">
           <summary>Pintura</summary>
           <div class="liveries" id="liveries" role="group" aria-label="Escolher pintura"></div>
@@ -48,7 +49,7 @@
 </main>
 
 <footer class="wrap site-foot">
-  <p>Fórmula 88 · A melhor liga de karts acima do Mondego</p>
+  <p id="foot-line">Fórmula 88 · A melhor liga de karts acima do Mondego</p>
   <p><button type="button" class="link-btn" data-install hidden>Instalar como app</button></p>
 </footer>
 
@@ -59,7 +60,7 @@
 window.F88Install = { prompt: null };
 window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); window.F88Install.prompt = e; window.dispatchEvent(new Event('f88-install')); });
 (function () {
-  var files = ['assets/scoring.js', 'assets/xlsx.js', 'assets/replay.js', 'assets/app.js'], current = null, checked = Date.now();
+  var files = ['assets/i18n.js', 'assets/scoring.js', 'assets/xlsx.js', 'assets/replay.js', 'assets/app.js'], current = null, checked = Date.now();
   function show() { document.documentElement.classList.remove('f88-boot'); }
   function version() { return fetch('version.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { return String(j.v); }); }
   function start(v) {

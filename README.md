@@ -122,6 +122,15 @@ request the stylesheet and scripts, so visitors get the new version on a normal 
 page left open reloads itself when they come back to it. `index.html` itself should rarely need to
 change. Data files in `data/` do not need a version bump: the site re-checks them on every visit.
 
+## Languages
+
+The site is in Portuguese, with an EN/PT button in the header; the choice is remembered in each browser.
+Interface texts are written as pairs in the code (`L('Vencedor', 'Winner')`, helper in `assets/i18n.js`).
+The rules have an English copy in `content/regulamento.en.html`: when the Portuguese rules change, update
+that file too. A few texts that come from the data files (track surface, race notes, "+1 volta", season
+names) are translated in `assets/i18n.js`; add new ones there if needed. Names of drivers, teams and tracks
+are not translated.
+
 ## Installing it as an app
 
 The site can be added to a phone's home screen (browser menu, "Install" or "Add to Home screen").

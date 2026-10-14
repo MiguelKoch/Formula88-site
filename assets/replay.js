@@ -13,7 +13,9 @@
 
   function fmtLap(s) { return (s == null || !isFinite(s)) ? '–' : (s < 60 ? s.toFixed(3) : Math.floor(s / 60) + ':' + (s % 60).toFixed(3).padStart(6, '0')); }
   function fmtClock(s) { return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0'); }
-  function fmtGap(sec, laps) { return laps >= 1 ? '+' + laps + (laps === 1 ? ' volta' : ' voltas') : '+' + (sec < 10 ? sec.toFixed(3) : sec.toFixed(1)); }
+  function L(pt, en) { return window.F88I18n ? window.F88I18n.L(pt, en) : pt; }
+  function ordn(n) { return window.F88I18n ? window.F88I18n.ord(n) : n + 'º'; }
+  function fmtGap(sec, laps) { return laps >= 1 ? '+' + laps + (laps === 1 ? L(' volta', ' lap') : L(' voltas', ' laps')) : '+' + (sec < 10 ? sec.toFixed(3) : sec.toFixed(1)); }
   function shortName(name) { var p = name.split(' ').filter(Boolean); return p.length < 2 ? name : p[0][0] + '. ' + p.slice(1).join(' '); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
@@ -146,27 +148,27 @@
   var ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"/><rect x="14" y="4" width="5" height="16" rx="1"/></svg>';
   var ICON_RESTART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>';
 
-  var TEMPLATE =
+  function template() { return (
     '<div class="rp-main">' +
       '<div class="rp-stage"><canvas></canvas>' +
-        '<div class="rp-tools"><button type="button" class="rp-chip rp-follow" aria-pressed="false" hidden>Seguir</button><button type="button" class="rp-chip rp-fit" hidden>Ver pista toda</button></div>' +
+        '<div class="rp-tools"><button type="button" class="rp-chip rp-follow" aria-pressed="false" hidden>' + L('Seguir', 'Follow') + '</button><button type="button" class="rp-chip rp-fit" hidden>' + L('Ver pista toda', 'Whole track') + '</button></div>' +
         '<div class="rp-toast" role="status"></div>' +
-        '<p class="rp-hint"><span class="rp-full">Toca num piloto para o destacar, ou em dois para ver o duelo.</span><span class="rp-short">Toca num piloto, ou em dois para o duelo.</span></p>' +
-        '<div class="rp-card" hidden><button type="button" class="rp-x" aria-label="Limpar seleção">×</button><div class="rp-card-body"></div></div>' +
+        '<p class="rp-hint"><span class="rp-full">' + L('Toca num piloto para o destacar, ou em dois para ver o duelo.', 'Tap a driver to highlight them, or two to see their battle.') + '</span><span class="rp-short">' + L('Toca num piloto, ou em dois para o duelo.', 'Tap a driver, or two for their battle.') + '</span></p>' +
+        '<div class="rp-card" hidden><button type="button" class="rp-x" aria-label="' + L('Limpar seleção', 'Clear selection') + '">×</button><div class="rp-card-body"></div></div>' +
       '</div>' +
       '<div class="rp-tower">' +
-        '<div class="rp-head"><div class="rp-lap"><b class="rp-lap-now">Volta 1</b><span class="rp-lap-total"></span><em class="rp-state"></em></div><div class="rp-best"></div></div>' +
-        '<div class="rp-cols"><div>Pos</div><div></div><div>Piloto</div><div>Última</div><div>Int.</div><div>Líder</div></div>' +
+        '<div class="rp-head"><div class="rp-lap"><b class="rp-lap-now">' + L('Volta 1', 'Lap 1') + '</b><span class="rp-lap-total"></span><em class="rp-state"></em></div><div class="rp-best"></div></div>' +
+        '<div class="rp-cols"><div>Pos</div><div></div><div>' + L('Piloto', 'Driver') + '</div><div>' + L('Última', 'Last') + '</div><div>Int.</div><div>' + L('Líder', 'Leader') + '</div></div>' +
         '<div class="rp-rows"><div class="rp-rows-inner"></div></div>' +
       '</div>' +
     '</div>' +
     '<div class="rp-transport">' +
-      '<button type="button" class="rp-icon rp-primary rp-play" aria-label="Pausa"></button>' +
-      '<button type="button" class="rp-icon rp-restart" aria-label="Recomeçar">' + ICON_RESTART + '</button>' +
-      '<div class="rp-scrub"><div class="rp-ticks"></div><input type="range" min="0" max="1000" step="1" value="0" aria-label="Tempo de corrida"></div>' +
+      '<button type="button" class="rp-icon rp-primary rp-play" aria-label="' + L('Pausa', 'Pause') + '"></button>' +
+      '<button type="button" class="rp-icon rp-restart" aria-label="' + L('Recomeçar', 'Restart') + '">' + ICON_RESTART + '</button>' +
+      '<div class="rp-scrub"><div class="rp-ticks"></div><input type="range" min="0" max="1000" step="1" value="0" aria-label="' + L('Tempo de corrida', 'Race time') + '"></div>' +
       '<div class="rp-clock"><b class="rp-now">0:00</b> <span class="rp-end"></span></div>' +
-      '<div class="rp-speeds" role="group" aria-label="Velocidade"><button type="button" data-speed="1">1×</button><button type="button" data-speed="2">2×</button><button type="button" data-speed="5">5×</button><button type="button" data-speed="10">10×</button></div>' +
-    '</div>';
+      '<div class="rp-speeds" role="group" aria-label="' + L('Velocidade', 'Speed') + '"><button type="button" data-speed="1">1×</button><button type="button" data-speed="2">2×</button><button type="button" data-speed="5">5×</button><button type="button" data-speed="10">10×</button></div>' +
+    '</div>'); }
 
   function hexToRgb(h) {
     h = (h || '').trim().replace('#', '');
@@ -182,7 +184,7 @@
 
   function Replay(el, data) {
     var self = this;
-    this.el = el; el.classList.add('rp'); el.innerHTML = TEMPLATE;
+    this.el = el; el.classList.add('rp'); el.innerHTML = template();
     this.q = function (s) { return el.querySelector(s); };
     this.race = new Race(data);
     this.t = 0; this.playing = true; this.scrubbing = false; this.speed = 2;
@@ -260,7 +262,7 @@
     this.prevDuel = null; this.duelTrend = 0; this.cardKey = null;
     this.syncSelection();
   };
-  P.syncPlay = function () { var b = this.q('.rp-play'); b.innerHTML = this.playing ? ICON_PAUSE : ICON_PLAY; b.setAttribute('aria-label', this.playing ? 'Pausa' : 'Reproduzir'); };
+  P.syncPlay = function () { var b = this.q('.rp-play'); b.innerHTML = this.playing ? ICON_PAUSE : ICON_PLAY; b.setAttribute('aria-label', this.playing ? L('Pausa', 'Pause') : L('Reproduzir', 'Play')); };
   P.syncSpeed = function () { var sp = this.speed; Array.prototype.forEach.call(this.el.querySelectorAll('.rp-speeds button'), function (b) { b.setAttribute('aria-pressed', String(+b.dataset.speed === sp)); }); };
   P.syncTools = function () {
     var has = this.selected.length > 0, f = this.q('.rp-follow');
@@ -298,9 +300,9 @@
     // os intervalos só são refrescados de GAP_EVERY em GAP_EVERY ms enquanto a corrida corre; parado ou a arrastar, é imediato
     var fresh = this.gapFresh = !this.playing || this.scrubbing || !this.gapAt || now - this.gapAt >= GAP_EVERY;
     if (fresh) this.gapAt = now;
-    this.q('.rp-lap-now').textContent = 'Volta ' + Math.min(lead.finished ? lead.d.n : lead.done + 1, this.race.totalLaps);
-    this.q('.rp-state').textContent = st.complete ? 'TERMINADA' : '';
-    var best = rec ? 'Volta mais rápida: <b>' + fmtLap(rec.time) + '</b> · ' + esc(rec.driver.name) + ' (V' + rec.lap + ')' : 'Volta mais rápida: –';
+    this.q('.rp-lap-now').textContent = L('Volta ', 'Lap ') + Math.min(lead.finished ? lead.d.n : lead.done + 1, this.race.totalLaps);
+    this.q('.rp-state').textContent = st.complete ? L('TERMINADA', 'FINISHED') : '';
+    var best = rec ? L('Volta mais rápida: ', 'Fastest lap: ') + '<b>' + fmtLap(rec.time) + '</b> · ' + esc(rec.driver.name) + ' (' + L('V', 'L') + rec.lap + ')' : L('Volta mais rápida: –', 'Fastest lap: –');
     if (best !== this.bestHtml) { this.bestHtml = best; this.q('.rp-best').innerHTML = best; }
     st.order.forEach(function (s) {
       var row = self.rows[s.d.name], prev = self.prevOrder[s.d.name];
@@ -317,13 +319,13 @@
       if (fresh || row.cache.gapOrder !== s.order) {          // quem muda de posição acerta logo os seus números
         row.cache.gapOrder = s.order;
         self.set(row, 'int', row.int, s.order === 1 ? '' : fmtGap(s.int, s.intLaps));
-        self.set(row, 'gap', row.gap, s.order === 1 ? 'Líder' : fmtGap(s.gap, s.gapLaps));
+        self.set(row, 'gap', row.gap, s.order === 1 ? L('Líder', 'Leader') : fmtGap(s.gap, s.gapLaps));
       }
     });
     var toast = this.q('.rp-toast');
     if (rec !== this.lastRecord) {
       if (rec && this.playing && !this.scrubbing) {
-        toast.innerHTML = 'Nova volta mais rápida<small>' + esc(rec.driver.name) + ' · ' + fmtLap(rec.time) + ' · volta ' + rec.lap + '</small>';
+        toast.innerHTML = L('Nova volta mais rápida', 'New fastest lap') + '<small>' + esc(rec.driver.name) + ' · ' + fmtLap(rec.time) + L(' · volta ', ' · lap ') + rec.lap + '</small>';
         this.toastUntil = now + 3500;
       }
       this.lastRecord = rec;
@@ -337,19 +339,19 @@
     var key = S.map(function (s) { return s.d.name + s.order + '.' + s.done; }).join('|');
     if (!this.gapFresh && key === this.cardKey) return;
     this.cardKey = key;
-    function nameEl(s) { return '<div class="rp-card-name"><span class="rp-dot" style="background:' + s.d.color + '"></span><span>' + s.order + 'º ' + esc(s.d.name) + '</span></div>'; }
+    function nameEl(s) { return '<div class="rp-card-name"><span class="rp-dot" style="background:' + s.d.color + '"></span><span>' + ordn(s.order) + ' ' + esc(s.d.name) + '</span></div>'; }
     if (S.length === 2) {
       var pair = S[0].dist >= S[1].dist ? S : [S[1], S[0]], ahead = pair[0], behind = pair[1];
       var laps = Math.floor(ahead.dist - behind.dist), gap = this.race.gapBetween(ahead, behind, st.t);
       if (this.prevDuel != null && this.playing && Math.abs(gap - this.prevDuel) > 1e-4) this.duelTrend = gap > this.prevDuel ? 1 : -1;
       this.prevDuel = gap;
-      var trend = this.duelTrend > 0 ? '<span class="rp-opening">a abrir ▲</span>' : this.duelTrend < 0 ? '<span class="rp-closing">a fechar ▼</span>' : '';
-      html = '<div class="rp-card-k">Duelo</div><div class="rp-card-row"><div class="rp-card-names">' + nameEl(ahead) + nameEl(behind) +
-        '</div><div class="rp-card-gap"><div class="rp-card-big">' + (laps >= 1 ? '+' + laps + 'V' : gap.toFixed(3) + 's') + '</div><div class="rp-card-trend">' + trend + '</div></div></div>';
+      var trend = this.duelTrend > 0 ? '<span class="rp-opening">' + L('a abrir', 'growing') + ' ▲</span>' : this.duelTrend < 0 ? '<span class="rp-closing">' + L('a fechar', 'closing') + ' ▼</span>' : '';
+      html = '<div class="rp-card-k">' + L('Duelo', 'Battle') + '</div><div class="rp-card-row"><div class="rp-card-names">' + nameEl(ahead) + nameEl(behind) +
+        '</div><div class="rp-card-gap"><div class="rp-card-big">' + (laps >= 1 ? '+' + laps + L('V', 'L') : gap.toFixed(3) + 's') + '</div><div class="rp-card-trend">' + trend + '</div></div></div>';
     } else {
       var s = S[0];
-      html = '<div class="rp-card-k">Piloto</div>' + nameEl(s) + '<div class="rp-card-stats"><div>Última<b>' + fmtLap(s.last) + '</b></div><div>Melhor<b>' + fmtLap(s.pb) + '</b></div><div>Ao líder<b>' +
-        (s.order === 1 ? 'Líder' : fmtGap(s.gap, s.gapLaps)) + '</b></div><div>Voltas<b>' + s.done + '/' + s.d.n + '</b></div></div>';
+      html = '<div class="rp-card-k">' + L('Piloto', 'Driver') + '</div>' + nameEl(s) + '<div class="rp-card-stats"><div>' + L('Última', 'Last') + '<b>' + fmtLap(s.last) + '</b></div><div>' + L('Melhor', 'Best') + '<b>' + fmtLap(s.pb) + '</b></div><div>' + L('Ao líder', 'To leader') + '<b>' +
+        (s.order === 1 ? L('Líder', 'Leader') : fmtGap(s.gap, s.gapLaps)) + '</b></div><div>' + L('Voltas', 'Laps') + '<b>' + s.done + '/' + s.d.n + '</b></div></div>';
     }
     if (html !== this.cardHtml) { this.cardHtml = html; this.q('.rp-card-body').innerHTML = html; }
   };
