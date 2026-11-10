@@ -117,7 +117,8 @@
       "duration": "20 min",
       "surface": "Seco",
       "hasResults": true,
-      "sheet": "assets/img/folhas/2027-kivi.jpg"
+      "sheet": "assets/img/folhas/2027-kivi.jpg",
+      "hasReplay": true
     }
   ]
 }
