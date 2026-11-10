@@ -64,20 +64,36 @@
       "name": "Daniel Marques"
     },
     {
-      "id": "ze",
-      "name": "Zé"
+      "id": "ze-silva",
+      "name": "Zé Silva"
     },
     {
-      "id": "hugo",
-      "name": "Hugo"
+      "id": "hugo-pina",
+      "name": "Hugo Pina"
     },
     {
-      "id": "manuel",
-      "name": "Manuel"
+      "id": "manuel-carvalho",
+      "name": "Manuel Carvalho"
     },
     {
-      "id": "rui-moura",
-      "name": "Rui Moura"
+      "id": "rui-moreira",
+      "name": "Rui Moreira"
+    },
+    {
+      "id": "pedro-gomes",
+      "name": "Pedro Gomes"
+    },
+    {
+      "id": "filipe-costa",
+      "name": "Filipe Costa"
+    },
+    {
+      "id": "diogo-oliveira",
+      "name": "Diogo Oliveira"
+    },
+    {
+      "id": "luis-silva",
+      "name": "Luis Silva"
     }
   ],
   "teams": [],
@@ -91,6 +107,17 @@
       "hasResults": true,
       "hasReplay": true,
       "sheet": "assets/img/folhas/2027-viana.jpg"
+    },
+    {
+      "id": "kivi",
+      "name": "Kivi",
+      "track": "Kartódromo Kivi (Viana)",
+      "date": "2026-11-08",
+      "karts": "270cc",
+      "duration": "20 min",
+      "surface": "Seco",
+      "hasResults": true,
+      "sheet": "assets/img/folhas/2027-kivi.jpg"
     }
   ]
 }

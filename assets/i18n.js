@@ -31,7 +31,9 @@
   var DATA = {
     'Seco': 'Dry', 'Molhado': 'Wet', 'Chuva': 'Rain', 'Humido': 'Damp', 'Húmido': 'Damp',
     'Grelha definida pela qualificação.': 'Grid set by qualifying.',
-    'Grelha definida pelos tempos de treino.': 'Grid set by practice times.'
+    'Grelha definida pelos tempos de treino.': 'Grid set by practice times.',
+    'Do 6.º ao 13.º lugar, a folha da pista diz "1 lap", mas ninguém foi dobrado: o tempo acabou antes de completarem a 22.ª volta. As diferenças mostradas são aproximadas, calculadas a partir dos tempos por volta.':
+      'From 6th to 13th place the track\'s sheet says "1 lap", but nobody was lapped: time ran out before they completed lap 22. The gaps shown are approximate, worked out from the lap times.'
   };
   function data(text) {
     if (lang !== 'en' || text == null) return text;

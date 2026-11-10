@@ -1,0 +1,118 @@
+{
+  "race": "kivi",
+  "fastestLap": "goncalo-portugal",
+  "note": "Do 6.º ao 13.º lugar, a folha da pista diz \"1 lap\", mas ninguém foi dobrado: o tempo acabou antes de completarem a 22.ª volta. As diferenças mostradas são aproximadas, calculadas a partir dos tempos por volta.",
+  "results": [
+    {
+      "driver": "pedro-gomes",
+      "pos": 1,
+      "grid": 3,
+      "bestLap": "0:53.990"
+    },
+    {
+      "driver": "sergio-machado",
+      "pos": 2,
+      "grid": 9,
+      "gap": "+8.87",
+      "bestLap": "0:53.947"
+    },
+    {
+      "driver": "bruno-silva",
+      "pos": 3,
+      "grid": 15,
+      "gap": "+9.25",
+      "bestLap": "0:53.708"
+    },
+    {
+      "driver": "david-santos",
+      "pos": 4,
+      "grid": 14,
+      "gap": "+9.95",
+      "bestLap": "0:53.613"
+    },
+    {
+      "driver": "goncalo-portugal",
+      "pos": 5,
+      "grid": 16,
+      "gap": "+10.60",
+      "bestLap": "0:53.467"
+    },
+    {
+      "driver": "miguel-carmo",
+      "pos": 6,
+      "grid": 13,
+      "gap": "+19.4",
+      "bestLap": "0:53.764"
+    },
+    {
+      "driver": "filipe-costa",
+      "pos": 7,
+      "grid": 4,
+      "gap": "+21.7",
+      "bestLap": "0:54.780"
+    },
+    {
+      "driver": "hugo-oliveira",
+      "pos": 8,
+      "grid": 10,
+      "gap": "+24.6",
+      "bestLap": "0:53.785"
+    },
+    {
+      "driver": "fabio-oliveira",
+      "pos": 9,
+      "grid": 12,
+      "gap": "+25.1",
+      "bestLap": "0:53.916"
+    },
+    {
+      "driver": "sergio-costa",
+      "pos": 10,
+      "grid": 11,
+      "gap": "+28.6",
+      "bestLap": "0:54.439"
+    },
+    {
+      "driver": "diogo-oliveira",
+      "pos": 11,
+      "grid": 1,
+      "gap": "+40.1",
+      "bestLap": "0:55.525"
+    },
+    {
+      "driver": "hugo-pina",
+      "pos": 12,
+      "grid": 7,
+      "gap": "+50.7",
+      "bestLap": "0:55.329"
+    },
+    {
+      "driver": "ze-silva",
+      "pos": 13,
+      "grid": 8,
+      "gap": "+52.2",
+      "bestLap": "0:55.358"
+    },
+    {
+      "driver": "luis-silva",
+      "pos": 14,
+      "grid": 2,
+      "gap": "+1 volta",
+      "bestLap": "0:55.794"
+    },
+    {
+      "driver": "manuel-carvalho",
+      "pos": 15,
+      "grid": 6,
+      "gap": "+1 volta",
+      "bestLap": "0:54.885"
+    },
+    {
+      "driver": "rui-moreira",
+      "pos": 16,
+      "grid": 5,
+      "gap": "+1 volta",
+      "bestLap": "0:56.197"
+    }
+  ]
+}
