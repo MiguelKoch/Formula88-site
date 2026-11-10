@@ -103,7 +103,9 @@
       "name": "Viana",
       "track": "Kartódromo de Viana",
       "date": "2026-10-11",
+      "karts": "390cc",
       "duration": "15 min",
+      "surface": "Seco",
       "hasResults": true,
       "hasReplay": true,
       "sheet": "assets/img/folhas/2027-viana.jpg"
